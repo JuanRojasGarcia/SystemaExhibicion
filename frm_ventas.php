@@ -63,6 +63,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
+
                             <tbody id="tableBodyForm">
                             </tbody>
                         </table>
@@ -101,7 +102,6 @@
                                 </tr>
                             </thead>
                             <tbody id="tableBodyPayments">
-                                
                             </tbody>
                         </table>
                     </div>
@@ -149,11 +149,11 @@
 
             });
 
-            let lineNo = 0;
+                //console.log($('#cantidadArt').val());
+
 
             $('#btnAddArt').on('click', function(e) {
                 var id = $('#selectArt').val();  
-                const selectArt = $('#selectArt');
                 $.ajax({  
                     url:"./log_get_dataArt.php",  
                     method:"POST",  
@@ -162,12 +162,13 @@
                         $('#tableBodyForm').html(data) ;
 
                     }  
-                }); 
-                lineNo++;
-
-                console.log(lineNo);
-                
+                });
             });
+
+
+
+
+            
 
 
         });  

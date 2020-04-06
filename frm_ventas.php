@@ -7,19 +7,12 @@
  $resultset = pg_query($connect, $consulta) 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
 <div class="container">
             <div>
-                <form id="form" autocomplete="off">
+                <form action="./log_ventas.php"  method="GET" autocomplete="off" id="form">
                     <div class="form-group row">
                         <div class="col input-group mb-6">
-                            <select class="input-group-append custom-select" id="selectEmp">
+                            <select class="input-group-append custom-select" id="selectEmp" name="selectEmp">
                                 <option value="" selected="selected">Choose...</option>
                                 <?php while( $rows = pg_fetch_assoc($resultset)) { ?>
                                 <option value="<?php echo $rows["num_empleado"]; ?>"><?php echo $rows["nombre_empleado"]. " " .$rows["apellido_empleado"]; ?>  </option>
@@ -30,6 +23,11 @@
                             <span id="emailEmp"> Email: </span>
                         </div>
                     </div>
+                                        
+                    <div class="form-group " style="display:none;">
+                        <input type="text" id="fecha" name="fecha" >
+                    </div>
+
                     <div class="form-group row">
                         <div class="col input-group mb-3">
                             <select class="input-group-append custom-select" id="selectArt" >
@@ -81,9 +79,10 @@
                                         
                                     </div>
                                     <div class="col-lg-5">
-                                        <p class="text-right pr-4" id="downpayment">0</p>
-                                        <p class="text-right pr-4" id="dpbonus">0</p>
-                                        <p class="text-right pr-4" id="total">0</p>
+                                        <p class="text-right pr-4" id="enganche">0</p>
+                                        <p class="text-right pr-4" id="egbonus">0</p>
+                                        <input type="text" class="text-right" id="total" name="total" value="0" style=" background-color: #ffff;border: 0; width:100px;">
+                                        <!--<p class="text-right pr-4" id="total" name="total">0</p>-->
                                     </div>
                                 </div>
                             </div>
@@ -125,16 +124,17 @@
             </div>
 
     </div>
-
-</body>
-</html>
  
 
     
-    <script> 
+    <script>           
         $(document).ready(function(){  
-            
+            const f = new Date();
+            //$('#fecha').text(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
+            $("#fecha").val(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
+
             $('#selectEmp').change(function(){  
+                const selectEmp = $('#selectEmp');
                 var id = $(this).val();  
                 $.ajax({  
                     url:"./log_get_dataEmp.php",  
@@ -142,10 +142,11 @@
                     data:{id:id},  
                     success:function(data){  
                         $('#emailEmp').html(data);  
+                        selectEmp.prop('disabled', true)
+
                     }  
                 }); 
-                const selectEmp = $('#selectEmp');
-                selectEmp.prop('disabled', true)
+
 
             });
 
@@ -153,6 +154,10 @@
 
 
             $('#btnAddArt').on('click', function(e) {
+                const enganche = $('#enganche');
+                const bonEnganche = $('#egbonus');
+                const total = $('#total');
+
                 var id = $('#selectArt').val();  
                 $.ajax({  
                     url:"./log_get_dataArt.php",  
@@ -161,9 +166,29 @@
                     success:function(data){           
                         $('#tableBodyForm').html(data) ;
 
+                        $('#enganche').empty() ;
+                        $('#egbonus').empty() ;
+                        $('#total').val('0') ;
+
+                        $('#enganche').append('0') ;
+                        $('#egbonus').append('0') ;
                     }  
                 });
+
+                const selectArt = $('#selectArt');
+                selectArt.prop('disabled', false)
             });
+
+            $('#selectArt').change(function(){  
+                const selectArt = $('#selectArt');
+                selectArt.prop('disabled', true)
+            });
+
+            //$("input[type=submit]").click(function(){
+                
+
+            //});
+
 
 
 

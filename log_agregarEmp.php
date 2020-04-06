@@ -4,9 +4,6 @@ if (!isset($_POST["numEmpleado"]) || !isset($_POST["iduCentro"])  || !isset($_PO
     exit();
 }
  
-
-
-
 include_once "../CapaDatos/conexion.php";
 $numEmpleado = $_POST["numEmpleado"];
 $nombreEmp = $_POST["nombreEmp"];

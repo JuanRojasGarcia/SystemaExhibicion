@@ -17,6 +17,7 @@ $output = '';
             
             $precio = $row["precio"];
             $id = $row["idu_articulo"];
+
             $precioInt = $precio * (1 + ($tasaFinanc * $plazoMaximo) / 100);
 
             $output .= 
@@ -54,8 +55,12 @@ $output = '';
                 url:"./log_get_importeArt.php",  
                 method:"POST",  
                 data:{cantidad:cantidad, id:id, precioInt:precioInt},  
-                success:function(data){           
-                   $('#importeArt').html(data) ;
+                success:function(value){       
+                    var data = value.split(",");    
+                   $('#importeArt').html(data[0]);
+                   $('#enganche').html(data[1]);
+                   $('#egbonus').html(data[2]);
+                   $('#total').val(data[3]);
                 }  
             }); 
     });

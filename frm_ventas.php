@@ -89,9 +89,9 @@
                         </div>
                     </div>
 
-                    <div id="divNext" class="container ">
+                    <div id="divNext" class="container d-none">
                         <table class="table text-black">
-                            <thead>
+                            <thead >
                                 <tr>
                                     <th></th>
                                     <th></th>
@@ -104,11 +104,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="row">
+                    <div class="row" style="float:right;">
                         <div class="col-lg-10"></div>
                         <div>
                             <a class="btn btn-danger" href="./index.php"><i ></i>Cancel</a>
-                            <button type="submit" class='btn btn-primary'>Next</button>
+                            <button type="submit" class='btn btn-success' id="btnSave">Save</button>
+                            <!-- <button class='btn btn-primary' id="btnNext">Next</button>-->
+                            <a class="btn btn-primary" id="btnNext" style="color:white;"><i ></i>Next</a>
                         </div>
                     </div>
                 </form>
@@ -119,6 +121,8 @@
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
                     <div class="alert" role="alert" id = "message"></div>
+                    <div class="alert" role="alert" id = "messagee"></div>
+
                 </div>
                 <div class="col-lg-2"></div>
             </div>
@@ -134,7 +138,7 @@
             $("#fecha").val(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
 
             $('#selectEmp').change(function(){  
-                const selectEmp = $('#selectEmp');
+                //const selectEmp = $('#selectEmp');
                 var id = $(this).val();  
                 $.ajax({  
                     url:"./log_get_dataEmp.php",  
@@ -142,8 +146,7 @@
                     data:{id:id},  
                     success:function(data){  
                         $('#emailEmp').html(data);  
-                        selectEmp.prop('disabled', true)
-
+                        //selectEmp.prop('disabled', true)
                     }  
                 }); 
 
@@ -185,16 +188,60 @@
             });
 
             //$("input[type=submit]").click(function(){
-                
+            //    console.log("Hola");
 
             //});
 
+            $('#btnNext').on('click', function(e) {
+                const message = $('#message');
+                if($('#selectEmp option:selected').val() == ''){
+                    message.html('Necesitas seleccionar un Empleado').show();
+                    message.addClass('alert-danger');
+                    setTimeout( function ( ) { 
+                        message.html('Necesitas seleccionar un Empleado').hide();  
+                    }, 4000 ); 
+                    return
+                }
+                if ($('#selectArt').val() == ''){
+                    const message = $('#message');
+                    message.html('Necesitas seleccionar un Articulo').show();
+                    message.addClass('alert-danger');
+                    setTimeout( function ( ) { 
+                        message.html('Necesitas seleccionar un Articulo').hide();  
+                    }, 4000 ); 
+                    return
+                }
+                if ($('#cantidadArt').val() == 0){
+                    const message = $('#message');
+                    message.html('La cantidad debe ser mayor a 0').show();
+                    message.addClass('alert-danger');
+                    setTimeout( function ( ) { 
+                        message.html('La cantidad debe ser mayor a 0').hide();  
+                    }, 4000 ); 
+                    return
+                }
+                const selectArt = $('#selectArt');
+                const selectEmp = $('#selectEmp');
+                //selectArt.prop('disabled', true)
+                //selectEmp.prop('disabled', true)
+
+                
+                $('#divNext').removeClass('d-none')
+
+                var totalAdeudo = $('#total').val();
+                console.log(totalAdeudo);
+                $.ajax({  
+                    url:"./log_get_totalabonosVen.php",  
+                    method:"POST",  
+                    data:{totalAdeudo:totalAdeudo},  
+                    success:function(data){       
+                        $('#tableBodyPayments').html(data);
+                    }  
+                }); 
 
 
 
-
-            
-
+            });
 
         });  
     </script>

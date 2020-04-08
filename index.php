@@ -3,6 +3,7 @@
 <?php include_once "./tablaCentro.php"; ?> 
 <?php include_once "./tablaConfiguracion.php"; ?>
 <?php include_once "./tablaArticulos.php"; ?>
+<?php include_once "./tablaVentas.php"; ?>
 
 
 

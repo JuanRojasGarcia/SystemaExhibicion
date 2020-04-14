@@ -1,6 +1,6 @@
 <?php  
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $output = '';
 
     if(isset($_POST["id"]) != '')  
@@ -58,11 +58,11 @@ $output = '';
 <script>
 $(document).ready(function(){              
 
+
     $("#cantidadArt").on('click', function(e) {
-        var cantidad = $('#cantidadArt').val();
         var precioInt = <?php if(isset($precioInt)){echo $precioInt; } else { echo '0';}?> ;
+        var cantidad = $('#cantidadArt').val();
         var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
-           
         $.ajax({  
             url:"./log_get_importeArt.php",  
             method:"POST",  
@@ -80,14 +80,16 @@ $(document).ready(function(){
             
     });
 
-    $('#btnSave').on('click', function(e) {
-        var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
-        var cantidad = $('#cantidadArt').val();                
+    $('#btnSave').on('click', function(e) {  
+        var cantidad = $('#cantidadArt').val();
+        var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;             
             $.ajax({  
                 url:"./log_edit_cantidadStock.php",  
                 method:"POST",  
                 data:{id:id, cantidad:cantidad},  
-                success:function(data){       
+                success:function(data){    
+                    $('#cantidadStock').html(data);
+
                 }  
             }); 
     }); 

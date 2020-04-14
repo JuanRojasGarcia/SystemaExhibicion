@@ -2,7 +2,7 @@
 
 <?php
  include_once "../CapaDatos/conexion.php";
- $connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+ $connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
  $consulta = "SELECT num_empleado, idu_centro, nombre_empleado, apellido_empleado, email_empleado FROM juan.cat_empleados";
  $resultset = pg_query($connect, $consulta) 
 ?>
@@ -36,7 +36,7 @@
                                 
                                 <?php
                                 include_once "../CapaDatos/conexion.php";
-                                $connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+                                $connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
                                 $consultaArt = "SELECT idu_articulo, descripcion, modelo, precio, existencia FROM juan.cat_articulos;";
                                 $resultsetArt = pg_query($connect, $consultaArt) ;
 

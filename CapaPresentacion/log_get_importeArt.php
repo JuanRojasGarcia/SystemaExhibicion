@@ -11,8 +11,6 @@ $output = '';
         $result = pg_query($connect, $consulta);  
         $rowConf = pg_fetch_array($resultConf);
 
-
-
         while( $row = pg_fetch_array($result))  
         { 
             $alertExistencia = "Exediste Stock Producto";
@@ -28,7 +26,7 @@ $output = '';
                 $enganche = ($enganchePor / 100) * $importe;
                 $bonEnganche = $enganche * (($tasaFinanc * $plazoMaximo) / 100);
                 $total = $importe - $enganche - $bonEnganche;
-                echo $importe.",".$enganche.",".$bonEnganche.",".$total; 
+                echo $importe.",".$enganche.",".$bonEnganche.",".$total.","; 
                 //echo "<script> console.log('.$importe.",".$enganche.'); </script>";
             } else{
                 echo "<script> console.log('Exediste Stock Producto'); </script>";
@@ -37,18 +35,16 @@ $output = '';
                 $enganche = ($enganchePor / 100) * $importe;
                 $bonEnganche = $enganche * (($tasaFinanc * $plazoMaximo) / 100);
                 $total = $importe - $enganche - $bonEnganche;
-                echo $importe.",".$enganche.",".$bonEnganche.",".$total; 
+                echo $importe.",".$enganche.",".$bonEnganche.",".$total.","; 
+
 
             }
+
+ 
         }  
             //echo "<script> console.log(' .$importe. '); </script>";
     }else{
         echo "<script> console.log('Cantidad no existe'); </script>";
     }
         //echo "<script> console.log( ".$_POST['id']."); </script>";
-
-
-
 ?>
-
-

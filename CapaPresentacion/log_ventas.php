@@ -1,14 +1,14 @@
 <?php
 
-    if ($_GET["total"] != 0 && $_GET["selectEmp"] != '' &&  $_GET["fecha"] != '') {
+    if ( $_GET["selectEmp"] != '' &&  $_GET["fecha"] != '' ) {
         include_once "../CapaDatos/conexion.php";
         $empleado = $_GET["selectEmp"];
-        $total = $_GET["total"];
+        $totalApagar = $_GET["optradio"]; 
         $fecha = $_GET["fecha"];
 
 
         $consulta = $connection->prepare("INSERT INTO juan.cat_ventas(num_empleado, total, fecha) VALUES (?, ?, ?);");
-        $resultado = $consulta->execute([$empleado, $total, $fecha]); 
+        $resultado = $consulta->execute([$empleado, $totalApagar , $fecha]); 
 
 
         if ($resultado === true) {
@@ -22,3 +22,6 @@
         
     }
 ?>
+
+
+

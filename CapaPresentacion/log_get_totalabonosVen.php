@@ -18,18 +18,21 @@ $output = '';
                 $totalApagar = $precioContado * (1 + ($tasaFinanc * $i) / 100);
                 $importeAbono = $totalApagar / $i;
                 $importeAhorra = $totalAdeudo - $totalApagar;
-                $valueRadio = $i / 3 - 1;
+                $valueRadio = $totalApagar;
                 $output .= 
                 '<tr><th scope="row">' . $i . ' Pagos de' .
                 '</th><td>' . $importeAbono . 
                 '</td><td>' . 'Total a Pagar ' . $totalApagar . 
                 '</td><td>' . 'Se Ahorra ' . $importeAhorra . 
-                '</td><td>' . "<input type='radio' class='form-check-input' value='$valueRadio' id='pay_$i' name='payment'>" . 
+                '</td><td>' . "<input type='radio' class='form-check-input' value='$valueRadio' id='pay_$i'  name='optradio' >" . 
                 '</td></tr>';
 
+                
 
             }
             echo $output;
+            //echo "<script> console.log('.$totalApagar.'); </script>";
+
 
             //$enganchePor = $rowConf['enganche'];      
             //echo "<script> console.log('.$importe.",".$enganche.'); </script>";
@@ -39,3 +42,25 @@ $output = '';
     }
         //echo "<script> console.log( ".$_POST['id']."); </script>";
 ?>
+
+<script>
+    $(document).ready(function(){
+
+        $('input[type="radio"]').click(function() {
+            if($(this).attr('id') == 'pay_3') {
+                $('#btnSave').show(); 
+                $('#btnNext').hide();
+            
+            }else if($(this).attr('id') == 'pay_6') {
+                $('#btnSave').show(); 
+                $('#btnNext').hide();
+            }else if($(this).attr('id') == 'pay_9') {
+                $('#btnSave').show(); 
+                $('#btnNext').hide();
+            }else{
+                $('#btnSave').show(); 
+                $('#btnNext').hide();
+            }
+        }); 
+    });
+</script>

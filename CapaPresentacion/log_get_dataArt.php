@@ -10,13 +10,19 @@ $output = '';
         $resultConf = pg_query($connect, $consultaConf);
         $result = pg_query($connect, $consulta);  
         $rowConf = pg_fetch_array($resultConf);
+
+       
         while( $row = pg_fetch_array($result))  
         { 
+
+           
+    
             $tasaFinanc = $rowConf["tasa_financiamiento"];
             $plazoMaximo = $rowConf["plazo_maximo"];
             
             $precio = $row["precio"];
             $id = $row["idu_articulo"];
+
 
             $precioInt = $precio * (1 + ($tasaFinanc * $plazoMaximo) / 100);
 
@@ -27,10 +33,13 @@ $output = '';
             '</td><td id="idPrecio" name="idPrecio">' .  $precioInt  .
             '</td><td id="importeArt" class="rowAmount">' . '0' .
             '</td></tr>';    
+
+
             
         }  
         echo $output; 
-        echo '<script>console.log("'.$_POST['cantidad'].'"); </script>';
+
+        //echo '<script>console.log("'.$_POST['cantidad'].'"); </script>';
 
 
     }else{
@@ -47,21 +56,41 @@ $output = '';
 ?>
 
 <script>
-    $("#cantidadArt").on('input', (e) => {
-            var cantidad = $('#cantidadArt').val();
-            var precioInt = <?php echo $precioInt; ?> ;
-            var id = <?php echo $id; ?> ;
+$(document).ready(function(){              
+
+    $("#cantidadArt").on('click', function(e) {
+        var cantidad = $('#cantidadArt').val();
+        var precioInt = <?php if(isset($precioInt)){echo $precioInt; } else { echo '0';}?> ;
+        var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
+           
+        $.ajax({  
+            url:"./log_get_importeArt.php",  
+            method:"POST",  
+            data:{cantidad:cantidad, id:id, precioInt:precioInt},  
+            success:function(value){       
+                var data = value.split(",");    
+                $('#importeArt').html(data[0]);
+                $('#enganche').html(data[1]);
+                $('#egbonus').html(data[2]);
+                $('#total').val(data[3]);
+            }  
+        }); 
+             
+
+            
+    });
+
+    $('#btnSave').on('click', function(e) {
+        var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
+        var cantidad = $('#cantidadArt').val();                
             $.ajax({  
-                url:"./log_get_importeArt.php",  
+                url:"./log_edit_cantidadStock.php",  
                 method:"POST",  
-                data:{cantidad:cantidad, id:id, precioInt:precioInt},  
-                success:function(value){       
-                    var data = value.split(",");    
-                   $('#importeArt').html(data[0]);
-                   $('#enganche').html(data[1]);
-                   $('#egbonus').html(data[2]);
-                   $('#total').val(data[3]);
+                data:{id:id, cantidad:cantidad},  
+                success:function(data){       
                 }  
             }); 
-    });
+    }); 
+
+});
 </script>

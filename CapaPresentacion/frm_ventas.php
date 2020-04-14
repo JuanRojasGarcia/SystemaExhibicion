@@ -7,6 +7,8 @@
  $resultset = pg_query($connect, $consulta) 
 ?>
 
+
+
 <div class="container">
             <div>
                 <form action="./log_ventas.php"  method="GET" autocomplete="off" id="form">
@@ -36,12 +38,14 @@
                                 include_once "../CapaDatos/conexion.php";
                                 $connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
                                 $consultaArt = "SELECT idu_articulo, descripcion, modelo, precio, existencia FROM juan.cat_articulos;";
-                                $resultsetArt = pg_query($connect, $consultaArt) 
+                                $resultsetArt = pg_query($connect, $consultaArt) ;
+
                                 ?>
 
                                 <option value="" selected>Choose...</option>
-                                <?php while( $rowsArt = pg_fetch_assoc($resultsetArt)) { ?>
-                                <option value="<?php echo $rowsArt["idu_articulo"]; ?>"><?php echo $rowsArt["descripcion"]?>  </option>
+                                <?php while( $rowsArt = pg_fetch_assoc($resultsetArt)) {  $existencia = $rowsArt["existencia"]; ?>
+                                
+                                <option value="<?php echo $rowsArt["idu_articulo"]; ?>"><?php echo $rowsArt["descripcion"]?>   </option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -81,7 +85,7 @@
                                     <div class="col-lg-5">
                                         <p class="text-right pr-4" id="enganche">0</p>
                                         <p class="text-right pr-4" id="egbonus">0</p>
-                                        <input type="text" class="text-right" id="total" name="total" value="0" style=" background-color: #ffff;border: 0; width:100px;">
+                                        <input type="numeric" class="text-right" id="total" name="total" value="0" style=" background-color: #ffff;border: 0; width:110px;">
                                         <!--<p class="text-right pr-4" id="total" name="total">0</p>-->
                                     </div>
                                 </div>
@@ -132,116 +136,149 @@
 
     
     <script>           
-        $(document).ready(function(){  
-            const f = new Date();
-            //$('#fecha').text(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
-            $("#fecha").val(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
+    $(document).ready(function(){              
 
-            $('#selectEmp').change(function(){  
-                //const selectEmp = $('#selectEmp');
-                var id = $(this).val();  
-                $.ajax({  
-                    url:"./log_get_dataEmp.php",  
-                    method:"POST",  
-                    data:{id:id},  
-                    success:function(data){  
-                        $('#emailEmp').html(data);  
-                        //selectEmp.prop('disabled', true)
-                    }  
-                }); 
+        $('#btnSave').hide(); 
+        $('#btnNext').show();
+
+        const f = new Date();
+        //$('#fecha').text(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
+        $("#fecha").val(`${f.getDate()}/${f.getMonth()+1}/${f.getFullYear()}`);
+
+        $('#selectEmp').change(function(){  
+            //const selectEmp = $('#selectEmp');
+            var id = $(this).val();  
+            $.ajax({  
+                url:"./log_get_dataEmp.php",  
+                method:"POST",  
+                data:{id:id},  
+                success:function(data){  
+                    $('#emailEmp').html(data);  
+                    //selectEmp.prop('disabled', true)
+                }  
+            }); 
 
 
-            });
+        });
 
-                //console.log($('#cantidadArt').val());
+            //console.log($('#cantidadArt').val());
 
 
-            $('#btnAddArt').on('click', function(e) {
-                const enganche = $('#enganche');
-                const bonEnganche = $('#egbonus');
-                const total = $('#total');
+        $('#btnAddArt').on('click', function(e) {
 
-                var id = $('#selectArt').val();  
-                $.ajax({  
-                    url:"./log_get_dataArt.php",  
-                    method:"POST",  
-                    data:{id:id},  
-                    success:function(data){           
-                        $('#tableBodyForm').html(data) ;
-
-                        $('#enganche').empty() ;
-                        $('#egbonus').empty() ;
-                        $('#total').val('0') ;
-
-                        $('#enganche').append('0') ;
-                        $('#egbonus').append('0') ;
-                    }  
-                });
-
-                const selectArt = $('#selectArt');
-                selectArt.prop('disabled', false)
-            });
-
-            $('#selectArt').change(function(){  
-                const selectArt = $('#selectArt');
-                selectArt.prop('disabled', true)
-            });
-
-            //$("input[type=submit]").click(function(){
-            //    console.log("Hola");
-
-            //});
-
-            $('#btnNext').on('click', function(e) {
+            if ($('#selectArt').val() === ''){
                 const message = $('#message');
-                if($('#selectEmp option:selected').val() == ''){
-                    message.html('Necesitas seleccionar un Empleado').show();
-                    message.addClass('alert-danger');
-                    setTimeout( function ( ) { 
-                        message.html('Necesitas seleccionar un Empleado').hide();  
-                    }, 4000 ); 
-                    return
-                }
-                if ($('#selectArt').val() == ''){
-                    const message = $('#message');
-                    message.html('Necesitas seleccionar un Articulo').show();
-                    message.addClass('alert-danger');
-                    setTimeout( function ( ) { 
-                        message.html('Necesitas seleccionar un Articulo').hide();  
-                    }, 4000 ); 
-                    return
-                }
-                // if ($('#cantidadArt').val() == 0){
-                //     const message = $('#message');
-                //     message.html('La cantidad debe ser mayor a 0').show();
-                //     message.addClass('alert-danger');
-                //     setTimeout( function ( ) { 
-                //         message.html('La cantidad debe ser mayor a 0').hide();  
-                //     }, 4000 ); 
-                //     return
-                // }
-                const selectArt = $('#selectArt');
-                const selectEmp = $('#selectEmp');
-                //selectArt.prop('disabled', true)
-                //selectEmp.prop('disabled', true)
+                message.html('Necesitas Seleccionar Articulo Antes de Agregarlo').show();
+                message.addClass('alert-danger');
+                setTimeout( function ( ) { 
+                    message.html('Necesitas Seleccionar Articulo Antes de Agregarlo').hide();  
+                }, 4000 );
+                return
+            }
 
-                
-                $('#divNext').removeClass('d-none')
+            const enganche = $('#enganche');
+            const bonEnganche = $('#egbonus');
+            const total = $('#total');
 
-                var totalAdeudo = $('#total').val();
-                console.log(totalAdeudo);
-                $.ajax({  
-                    url:"./log_get_totalabonosVen.php",  
-                    method:"POST",  
-                    data:{totalAdeudo:totalAdeudo},  
-                    success:function(data){       
-                        $('#tableBodyPayments').html(data);
-                    }  
-                }); 
+            var id = $('#selectArt').val();  
+            $.ajax({  
+                url:"./log_get_dataArt.php",  
+                method:"POST",  
+                data:{id:id},  
+                success:function(data){           
+                    $('#tableBodyForm').html(data) ;
 
+                    $('#enganche').empty() ;
+                    $('#egbonus').empty() ;
+                    $('#total').val('0') ;
 
-
+                    $('#enganche').append('0') ;
+                    $('#egbonus').append('0') ;
+                }  
             });
 
-        });  
+            const selectArt = $('#selectArt');
+            selectArt.prop('disabled', false)
+        });
+
+        $('#selectArt').change(function(){  
+            const selectArt = $('#selectArt');
+            selectArt.prop('disabled', true)
+        });
+
+        $('#btnNext').on('click', function(e) {
+        const message = $('#message');
+        if($('#selectEmp option:selected').val() == ''){
+            message.html('Necesitas seleccionar un Empleado').show();
+            message.addClass('alert-danger');
+            setTimeout( function ( ) { 
+                message.html('Necesitas seleccionar un Empleado').hide();  
+            }, 4000 ); 
+            return
+        }
+        if ($('#selectArt option:selected').val() == ''){
+            const message = $('#message');
+            message.html('Necesitas seleccionar un Articulo').show();
+            message.addClass('alert-danger');
+            setTimeout( function ( ) { 
+                message.html('Necesitas seleccionar un Articulo').hide();  
+            }, 4000 ); 
+            return
+        }
+        if ($('#cantidadArt').val() == 0){
+            const message = $('#message');
+            message.html('La cantidad debe ser mayor a 0').show();
+            message.addClass('alert-danger');
+            setTimeout( function ( ) { 
+                message.html('La cantidad debe ser mayor a 0').hide();  
+            }, 4000 ); 
+            return
+        }
+
+        // if ($('#cantidadArt').val() > <?php echo $existencia; ?>){
+        //     message.html('Compras mas de lo Existe').show();
+        //     message.addClass('alert-danger');
+        //     setTimeout( function ( ) { 
+        //         message.html('Compras mas de lo Existe').hide();  
+        //     }, 4000 ); 
+        //     return
+        // }
+
+        const selectArt = $('#selectArt');
+        const selectEmp = $('#selectEmp');
+        const btnAddArt = $('#btnAddArt');
+        selectArt.prop('disabled', true)
+        btnAddArt.prop('disabled', true)
+        //selectEmp.prop('disabled', true)
+
+        
+        $('#divNext').removeClass('d-none')
+
+        var totalAdeudo = $('#total').val();
+        console.log(totalAdeudo);
+        $.ajax({  
+            url:"./log_get_totalabonosVen.php",  
+            method:"POST",  
+            data:{totalAdeudo:totalAdeudo},  
+            success:function(data){       
+                $('#tableBodyPayments').html(data);
+            }
+            
+            
+        });   
+
+        if (!$('#pay_3').is('checked') || !$('#pay_6').is('checked') || !$('#pay_9').is('checked') || !$('#pay_12').is('checked')){
+            const message = $('#message');
+            message.html('Necesitas seleccionar un Pago mensual').show();
+            message.addClass('alert-danger');
+            setTimeout( function ( ) { 
+                message.html('Necesitas seleccionar un Pago mensual').hide();  
+            }, 4000 ); 
+            return
+            }
+
+        }); 
+
+
+    });  
     </script>

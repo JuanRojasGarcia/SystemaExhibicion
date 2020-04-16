@@ -2,7 +2,7 @@
 
 
   <div class="container">
-        <form style="word-spacing: 100pt;"  align="center" >
+        <form style="word-spacing: 100pt;  text-align:center;" >
             <label class="radio-inline"><input type="radio" name="optradio" id="radEmp" >Empleados</label>
             <label class="radio-inline"><input type="radio" name="optradio" id="radCen">Centros</label>
             <label class="radio-inline"><input type="radio" name="optradio" id="radArt">Articulos</label>

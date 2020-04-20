@@ -17,3 +17,7 @@
 [Template one](https://blackrockdigital.github.io/startbootstrap-sb-admin/dist/index.html)
 [Templete two](https://demos.creative-tim.com/bs3/vue-paper-dashboard-pro/?#/admin/overview)
 [Templete three](https://mannatthemes.com/frogetor/dark/index-3.html)
+[Templete forty](https://startbootstrap.com/previews/sb-admin/)
+
+[Table one](https://freefrontend.com/css-tables/)
+

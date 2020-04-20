@@ -2,7 +2,7 @@
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $consultaEmp = "SELECT Count(*) As total from juan.cat_empleados"; 
 $resultÉmp = pg_query($connect, $consultaEmp); 
 $rowEmp = pg_fetch_assoc($resultÉmp);
@@ -13,7 +13,7 @@ $rowEmp = pg_fetch_assoc($resultÉmp);
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $consultaArt = "SELECT Count(*) As total from juan.cat_articulos"; 
 $resultArt = pg_query($connect, $consultaArt); 
 $rowArt = pg_fetch_assoc($resultArt);
@@ -24,7 +24,7 @@ $rowArt = pg_fetch_assoc($resultArt);
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $consultaVen = "SELECT Count(*) As total from juan.cat_ventas"; 
 $resultVen = pg_query($connect, $consultaVen); 
 $rowVen = pg_fetch_assoc($resultVen);
@@ -35,7 +35,7 @@ $rowVen = pg_fetch_assoc($resultVen);
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $consultaCen = "SELECT Count(*) As total from juan.cat_centros"; 
 $resultCen = pg_query($connect, $consultaCen); 
 $rowCen = pg_fetch_assoc($resultCen);

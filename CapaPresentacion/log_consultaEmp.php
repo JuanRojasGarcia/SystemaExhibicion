@@ -1,7 +1,7 @@
 <?php
 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $output = '';
 if(isset($_POST["query"])){
     $search = pg_escape_string($connect, $_POST["query"]);
@@ -21,7 +21,7 @@ if(pg_num_rows($result) > 0)
  $output .= '
   <div class="table-responsive" style="text-align:center;">
    <table class="table">
-   <thead class="thead-dark">
+    <thead class="thead-dark">
         <tr>
             <th># Empleado</th>
             <th>Centro</th>
@@ -34,13 +34,13 @@ if(pg_num_rows($result) > 0)
  while($row = pg_fetch_array($result))
  {
   $output .= '
-   <tr>
-    <td>'.$row["num_empleado"].'</td>
-    <td>'.$row["idu_centro"].'</td>
-    <td>'.$row["nombre_empleado"].'</td>
-    <td>'.$row["apellido_empleado"].'</td>
-    <td>'.$row["email_empleado"].'</td>
-   </tr>
+    <tr>
+        <td>'.$row["num_empleado"].'</td>
+        <td>'.$row["idu_centro"].'</td>
+        <td>'.$row["nombre_empleado"].'</td>
+        <td>'.$row["apellido_empleado"].'</td>
+        <td>'.$row["email_empleado"].'</td>
+    </tr>
   ';
  }
  echo $output;

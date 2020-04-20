@@ -21,7 +21,7 @@ $consulta->execute();
                         <i class="fa fa-user-o"></i>
                         <span class="btn-text">Empleados</span>
                     </button>
-                <!-- <h1><a class="btn-snapchat" style="margin-left: 20px" href="./frm_agregarEmp.php"><i class="fa fa-plus "></i> Empleados</a></h1>  -->
+                    <!-- <h1><a class="btn-snapchat" style="margin-left: 20px" href="./frm_agregarEmp.php"><i class="fa fa-plus "></i> Empleados</a></h1>  -->
                 </div>
                 <div class="col-xl-4 col-md-4">
                     <button class="btn-centros" style="margin-left: 0px"  id="btnCentros">

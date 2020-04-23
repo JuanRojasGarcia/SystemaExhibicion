@@ -218,7 +218,7 @@ $(document).ready(function(){
         padding: 7px 18px;
     }
 
-    .form-control:focus{
+    /* .form-control:focus{
         background:#fff;
         -webkit-transition: all ease-in-out .55s;
         -o-transition: all ease-in-out .55s;
@@ -229,7 +229,7 @@ $(document).ready(function(){
         -webkit-transition: all ease-in-out .55s;
         -o-transition: all ease-in-out .55s;
         transition: all ease-in-out .55s;
-    }
+    } */
 
     .row{
         margin-top: 20px;

@@ -58,7 +58,20 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+}
 
+[tabindex="-1"]:focus:not(:focus-visible) {
+  outline: 0 !important;
+}
 
 hr {
   box-sizing: content-box;
@@ -561,7 +574,6 @@ pre code {
   padding-left: 0.75rem;
   margin-right: auto;
   margin-left: auto;
-
 }
 
 @media (min-width: 576px) {
@@ -3987,9 +3999,7 @@ input[type=button].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  float: right;
 }
-
 .navbar-nav .nav-link {
   padding-right: 0;
   padding-left: 0;
@@ -4325,9 +4335,7 @@ input[type=button].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 6px;
-  box-shadow: 0 6px 10px -4px rgba(0,0,0,.50);
-  margin-top: 10px;
+  border-radius: 0.25rem;
 }
 .card > hr {
   margin-right: 0;
@@ -10017,9 +10025,9 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background:#000;
+  background: #000;
   z-index: 1037;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
 }
 

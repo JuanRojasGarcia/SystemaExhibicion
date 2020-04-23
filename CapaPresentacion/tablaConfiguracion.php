@@ -1,3 +1,4 @@
+
 <?php
 include_once "../CapaDatos/conexion.php";
 $consulta = $connection->prepare("SELECT idu_configuracion, tasa_financiamiento, enganche, plazo_maximo FROM juan.configuracion;",[

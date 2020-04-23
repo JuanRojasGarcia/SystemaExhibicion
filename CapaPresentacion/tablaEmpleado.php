@@ -1,3 +1,4 @@
+
 <?php
 include_once "../CapaDatos/conexion.php";
 $consulta = $connection->prepare("SELECT num_empleado, idu_centro, nombre_empleado, apellido_empleado, email_empleado FROM juan.cat_empleados;",[

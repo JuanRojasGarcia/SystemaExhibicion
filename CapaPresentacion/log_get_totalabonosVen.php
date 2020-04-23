@@ -1,6 +1,6 @@
 <?php  
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=localhost port=5433 dbname=postgres user=postgres") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
 $output = '';
 
     if($_POST["totalAdeudo"] != null)  
@@ -22,12 +22,11 @@ $output = '';
                 $output .= 
                 '<tr><th scope="row">' . $i . ' Pagos de' .
                 '</th><td>' . $importeAbono . 
-                '</td><th scope="row">' . 'Total a Pagar ' .
-                '</th><td>' . $totalApagar . 
-                '</td><th scope="row">' . 'Se Ahorra ' .
-                '</th><td>' . $importeAhorra . 
+                '</td><td>' . 'Total a Pagar ' . $totalApagar . 
+                '</td><td>' . 'Se Ahorra ' . $importeAhorra . 
                 '</td><td>' . "<input type='radio' value='$valueRadio' id='pay_$i'  name='optradio' >" . 
                 '</td></tr>';
+
                 
 
             }

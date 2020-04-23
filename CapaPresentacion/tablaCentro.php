@@ -1,3 +1,5 @@
+
+
 <?php
 include_once "../CapaDatos/conexion.php";
 $consulta = $connection->prepare("SELECT idu_centro, nombre_centro FROM juan.cat_centros;",[
@@ -5,6 +7,7 @@ $consulta = $connection->prepare("SELECT idu_centro, nombre_centro FROM juan.cat
 ]);
 $consulta->execute();
 ?>
+
 <div class="table-responsive" style="float:none; margin:auto;">
     <table class="table">
         <thead class="thead-dark">

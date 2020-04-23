@@ -1,3 +1,4 @@
+<?php include_once "./menu.html"; ?>
 
 <?php
 include_once "../CapaDatos/conexion.php";

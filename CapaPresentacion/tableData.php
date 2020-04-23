@@ -64,6 +64,8 @@
         text-align:center;
         margin-top: 30px;
 
+        float:none; 
+        margin-left:auto;
     }
 
     .card {

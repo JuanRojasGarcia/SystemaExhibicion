@@ -1,3 +1,5 @@
+
+
 <?php
 include_once "../CapaDatos/conexion.php";
 $consulta = $connection->prepare("SELECT idu_articulo, descripcion, modelo, precio, existencia FROM juan.cat_articulos;",[

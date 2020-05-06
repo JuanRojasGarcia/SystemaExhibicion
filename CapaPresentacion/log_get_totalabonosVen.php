@@ -21,11 +21,12 @@ $output = '';
                 $valueRadio = $totalApagar;
                 $output .= 
                 '<tr><th scope="row">' . $i . ' Pagos de' .
-                '</th><td>' . $importeAbono . 
-                '</td><td>' . 'Total a Pagar ' . $totalApagar . 
-                '</td><td>' . 'Se Ahorra ' . $importeAhorra . 
+                '</th><td>' . number_format($importeAbono,2) . 
+                '</td><td>' . 'Total a Pagar ' . number_format($totalApagar,2) . 
+                '</td><td>' . 'Se Ahorra ' . number_format($importeAhorra,2) . 
                 '</td><td>' . "<input type='radio' value='$valueRadio' id='pay_$i'  name='optradio' >" . 
                 '</td></tr>';
+
 
                 
 

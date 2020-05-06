@@ -23,7 +23,7 @@ $consulta->execute();
             <tr>
                 <td><?php echo $ventas->idu_venta?></td>
                 <td><?php echo $ventas->num_empleado?></td>
-                <td><?php echo $ventas->total?></td>
+                <td><?php echo number_format($ventas->total,2);?></td>
                 <td><?php echo $ventas->fecha?></td>
 
                 <td>

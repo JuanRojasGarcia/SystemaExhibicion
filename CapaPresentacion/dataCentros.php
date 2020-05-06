@@ -31,19 +31,10 @@ $consulta->execute();
                             </div>
 
                         </div>
-
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <!-- <a class="small stretched-link" href="#">View Details</a>
-                            <div class="small"><i class="fa fa-angle-right"></i>
-                            </div> -->
-
-                            <a  href="<?php echo "./frm_editarCen.php?id_cen=" . $centros->idu_centro ?>"><i class="fa fa-pencil fa-lg btn-outline-warning" aria-hidden="true"></i></a>
-                            <a  href="<?php echo "./log_eliminarCen.php?id_cen=" . $centros->idu_centro ?>" onclick="return confirm('Are you sure to delete this Article?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
-                        </div>
                     </div>
                 </div>
                 <?php } ?>
-                
+
             </div>
         </div>
     </div>

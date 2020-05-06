@@ -27,7 +27,7 @@ $output = '';
                 $enganche = ($enganchePor / 100) * $importe;
                 $bonEnganche = $enganche * (($tasaFinanc * $plazoMaximo) / 100);
                 $total = $importe - $enganche - $bonEnganche;
-                echo $importe.",".$enganche.",".$bonEnganche.",".$total.","; 
+                echo number_format($importe,2, '.', '').",".number_format($enganche,2, '.', '').",".number_format($bonEnganche,2, '.', '').",".number_format($total,2, '.', '').","; 
                 //echo "<script> console.log('.$importe.",".$enganche.'); </script>";
             } else{
                 echo "<script> console.log('Exediste Stock Producto'); </script>";
@@ -36,7 +36,7 @@ $output = '';
                 $enganche = ($enganchePor / 100) * $importe;
                 $bonEnganche = $enganche * (($tasaFinanc * $plazoMaximo) / 100);
                 $total = $importe - $enganche - $bonEnganche;
-                echo $importe.",".$enganche.",".$bonEnganche.",".$total.","; 
+                echo number_format($importe,2, '.', '').",".number_format($enganche,2, '.', '').",".number_format($bonEnganche,2, '.', '').",".number_format($total,2, '.', '').","; 
 
 
             }

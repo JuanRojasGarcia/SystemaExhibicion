@@ -30,12 +30,13 @@ $output = '';
             '<tr><td>' . $row["descripcion"] . 
             '</td><td>' . $row["modelo"] . 
             '</td><td>' . '<input id="cantidadArt" name="cantidadArt" class="qty" value="0" type="number" min="0">' . 
-            '</td><td id="idPrecio" name="idPrecio">' .  $precioInt  .
+            '</td><td id="idPrecio" name="idPrecio">' .  number_format($precioInt,2)  .
             '</td><td id="importeArt" class="rowAmount">' . '0' .
             '</td></tr>';    
 
 
-            
+
+
         }  
         echo $output; 
 
@@ -60,7 +61,7 @@ $(document).ready(function(){
 
 
     $("#cantidadArt").on('click', function(e) {
-        var precioInt = <?php if(isset($precioInt)){echo $precioInt; } else { echo '0';}?> ;
+        var precioInt = <?php if(isset($precioInt)){echo $precioInt; } else { echo '0';}?> 
         var cantidad = $('#cantidadArt').val();
         var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
         $.ajax({  

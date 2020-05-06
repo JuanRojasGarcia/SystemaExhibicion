@@ -24,10 +24,7 @@ $consulta->execute();
                                         <img src="https://www.jakpost.travel/imgfiles/full/134/1347383/surrealismo-wallpaper.jpg"/>
                                     </div>
 
-                                    <div class="buttons">
-                                        <button class="add"><a  href="<?php echo "./frm_editarEmp.php?id_emp=" . $empleados->num_empleado ?>"><i class="fa fa-pencil fa-lg btn-outline-warning" aria-hidden="true"></i></a></button>
-                                        <button class="like"><a  href="<?php echo "./log_eliminarEmp.php?id_emp=" . $empleados->num_empleado ?>" onclick="return confirm('Are you sure to delete this Article?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a></button>
-                                    </div>
+
                                 </div>
 
                                 <div class="pull-right">

@@ -23,11 +23,6 @@ $consulta->execute();
                                     <div class="images">
                                         <img src="https://img.favpng.com/20/18/18/product-icon-delivery-icon-png-favpng-pBB7CAb06q1NXvZLdeVZQ1vyF.jpg"/>
                                     </div>
-
-                                    <div class="buttons">
-                                        <button class="add"><a  href="<?php echo "./frm_editarArt.php?id_art=" . $articulos->idu_articulo ?>"><i class="fa fa-pencil fa-lg btn-outline-warning" aria-hidden="true"></i></a></button>
-                                        <button class="like"><a  href="<?php echo "./log_eliminarArt.php?id_art=" . $articulos->idu_articulo ?>" onclick="return confirm('Are you sure to delete this Article?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a></button>
-                                    </div>
                                 </div>
 
                                 <div class="pull-right">

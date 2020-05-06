@@ -24,7 +24,7 @@ $consulta->execute();
             <tr>
                 <td><?php echo $articulos->descripcion?></td>
                 <td><?php echo $articulos->modelo?></td>
-                <td><?php echo $articulos->precio?></td>
+                <td><?php echo number_format($articulos->precio,2);?></td>
                 <td><?php echo $articulos->existencia?></td>
 
                 <td>

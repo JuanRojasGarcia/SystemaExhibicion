@@ -1,0 +1,9 @@
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\bin\Debug\ABCExhibicion.exe
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\bin\Debug\ABCExhibicion.pdb
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ABCExhibicion.Properties.Resources.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ABCExhibicion.csproj.GenerateResource.Cache
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ABCExhibicion.exe
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ABCExhibicion.pdb
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ABCExhibicion.FrmAbcExhibicion.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Debug\ABCExhibicion.FrmArticulos.resources

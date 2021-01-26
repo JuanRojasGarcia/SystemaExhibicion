@@ -1,0 +1,13 @@
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\bin\Release\ABCExhibicion.exe
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\bin\Release\ABCExhibicion.pdb
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ResolveAssemblyReference.cache
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.FrmArticulos.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.Properties.Resources.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.csproj.GenerateResource.Cache
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.exe
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.pdb
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.FrmCliente.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.FrmVentas.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.FrmLocaciones.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.Configuracion.resources
+C:\Users\juan.rojas\Desktop\ABCExhibicion\ABCExhibicion\obj\Release\ABCExhibicion.Ventas.resources

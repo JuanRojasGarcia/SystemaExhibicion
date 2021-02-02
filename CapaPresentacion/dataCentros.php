@@ -3,10 +3,13 @@
 
 <?php
 include_once "../CapaDatos/conexion.php";
-$consulta = $connection->prepare("SELECT idu_centro, nombre_centro FROM juan.cat_centros;",[
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consulta = $connection->prepare("select * from juan.get_data_Centros()",[
     PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
 ]);
 $consulta->execute();
+$datos = $consulta->fetchAll();
 ?>
 
 
@@ -15,18 +18,18 @@ $consulta->execute();
         <div class="container-fluid">
             <div class="row">
 
-                <?php while ($centros = $consulta->fetchObject()) { ?>
+                <?php foreach($datos as $dato) { ?>
                 <div class="col-xl-3 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="pull-left">
-                                <p class="mb-0" style="text-align:center; font-size: 1.5em;" ><?php echo $centros->nombre_centro?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 1.5em;" ><?php  echo $dato[0];  ?></p>
 
                             </div>
 
                             <div class="pull-right">
                                 <!-- <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Empleados</p> -->
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php echo $centros->idu_centro?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php  echo $dato[1]; ?></p>
 
                             </div>
 

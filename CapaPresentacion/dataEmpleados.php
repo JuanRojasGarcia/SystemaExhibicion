@@ -2,10 +2,16 @@
 
 <?php
 include_once "../CapaDatos/conexion.php";
-$consulta = $connection->prepare("SELECT num_empleado, idu_centro, nombre_empleado, apellido_empleado, email_empleado FROM juan.cat_empleados;",[
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consulta = $connection->prepare("select * from juan.get_data_Empleados();",[
     PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
 ]);
 $consulta->execute();
+$datos = $consulta->fetchAll();
+// foreach($datos as $dato){
+// echo "<script> console.log('".$dato[2]. " " . $dato[3] ."'); </script>";
+// }
 ?>
 
 
@@ -15,13 +21,13 @@ $consulta->execute();
         <div class="container-fluid">
             <div class="row">
 
-                <?php while ($empleados = $consulta->fetchObject()) { ?>
+                <?php foreach($datos as $dato) { ?>
                     <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="pull-left">
                                     <div class="images">
-                                        <img src="https://www.jakpost.travel/imgfiles/full/134/1347383/surrealismo-wallpaper.jpg"/>
+                                        <img src="https://image.flaticon.com/icons/png/512/401/401156.png"/>
                                     </div>
 
 
@@ -29,10 +35,10 @@ $consulta->execute();
 
                                 <div class="pull-right">
                                     <div class="product">
-                                        <h1><?php echo$empleados->nombre_empleado. " " .$empleados->apellido_empleado ?></h1>
-                                        <p><?php echo $empleados->num_empleado?></p>
-                                        <p><?php echo $empleados->idu_centro?></p>
-                                        <p><?php echo $empleados->email_empleado?></p>
+                                        <h1><?php echo $dato[2]. " " .$dato[3]?></h1>
+                                        <p><?php echo $dato[0];?></p>
+                                        <p><?php echo $dato[1];?></p>
+                                        <p><?php echo $dato[4];?></p>
                                     </div>
                                 </div>
 

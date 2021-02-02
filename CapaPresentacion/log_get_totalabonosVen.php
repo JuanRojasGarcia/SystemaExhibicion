@@ -1,6 +1,6 @@
 <?php  
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
+$connect = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=admin357") or die('Could not connect: ' . pg_last_error());
 $output = '';
 
     if($_POST["totalAdeudo"] != null)  

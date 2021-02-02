@@ -2,10 +2,21 @@
 
 <?php
 include_once "../CapaDatos/conexion.php";
-$consulta = $connection->prepare("SELECT idu_centro FROM juan.cat_centros;",[
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consulta = $connection->prepare("select juan.get_all_Centros();",[
     PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
 ]);
 $consulta->execute();
+$datos = $consulta->fetchAll();
+
+// $objeto = new Conexion();
+// $connection = $objeto->Connect();
+// $consulta = "SELECT idu_centro FROM juan.cat_centros;"; 
+// $result =  $connection->prepare($consulta,[
+//         PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
+//     ]); 
+// $result->execute();
 
 ?>
 
@@ -108,8 +119,8 @@ $consulta->execute();
                         <label for="iduCentro">Centros</label> <br>
                         <select class="input-group-append" name="iduCentro" id="iduCentro">
                             <option value="" selected="selected">Choose....</option>  
-                            <?php while ($centros = $consulta->fetchObject()) { ?>
-                            <option value="<?php echo $centros->idu_centro?> "> <?php echo $centros->idu_centro?> </option>  
+                            <?php foreach($datos as $dato) { ?>
+                            <option value="<?php echo $dato[0];?> "> <?php echo $dato[0];?> </option>  
                             <?php } ?>
                         </select>
                     </div>

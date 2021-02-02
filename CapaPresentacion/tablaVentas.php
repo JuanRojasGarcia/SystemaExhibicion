@@ -1,10 +1,13 @@
 
 <?php
 include_once "../CapaDatos/conexion.php";
-$consulta = $connection->prepare("SELECT idu_venta, num_empleado, total, fecha FROM juan.cat_ventas;",[
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consulta = $connection->prepare("select * from juan.get_data_Ventas();",[
     PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
 ]);
 $consulta->execute();
+$datos = $consulta->fetchAll();
 ?>
 
 <div class="table-responsive" style="float:none; margin:auto;">
@@ -12,22 +15,22 @@ $consulta->execute();
         <thead class="thead-dark">
             <tr>
                 <th>Folio</th>
-                <th>Empleado ID</th>
+                <th>Empleado</th>
                 <th>Total</th>
                 <th>Fecha</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <?php while ($ventas = $consulta->fetchObject()) { ?>
+            <?php foreach($datos as $dato) { ?>
             <tr>
-                <td><?php echo $ventas->idu_venta?></td>
-                <td><?php echo $ventas->num_empleado?></td>
-                <td><?php echo number_format($ventas->total,2);?></td>
-                <td><?php echo $ventas->fecha?></td>
+                <td><?php echo $dato[0];?></td>
+                <td><?php echo $dato[1]. " " .$dato[2]?></td>
+                <td><?php echo number_format($dato[3],2);?></td>
+                <td><?php echo $dato[4];?></td>
 
                 <td>
-                    <a  href="<?php echo "./log_eliminarVen.php?idu_ven=" . $ventas->idu_venta ?>" onclick="return confirm('Are you sure to delete this Venta?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
+                    <a  href="<?php echo "./log_eliminarVen.php?idu_ven=" . $dato[0]; ?>" onclick="return confirm('Are you sure to delete this Venta?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
                 </td>
             </tr>
             <?php } ?>

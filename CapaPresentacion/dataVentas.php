@@ -2,10 +2,13 @@
 
 <?php
 include_once "../CapaDatos/conexion.php";
-$consulta = $connection->prepare("SELECT idu_venta, num_empleado, total, fecha FROM juan.cat_ventas;",[
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consulta = $connection->prepare("select * from juan.get_data_Ventas();",[
     PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
 ]);
 $consulta->execute();
+$datos = $consulta->fetchAll();
 ?>
 
 
@@ -14,7 +17,7 @@ $consulta->execute();
         <div class="container-fluid">
             <div class="row">
 
-                <?php while ($ventas = $consulta->fetchObject()) { ?>
+                <?php foreach($datos as $dato) { ?>
                     <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
@@ -26,10 +29,9 @@ $consulta->execute();
 
                                 <div class="pull-right">
                                     <div class="product">
-                                        <h1><?php echo $ventas->fecha?></h2>
-                                        <p><?php echo $ventas->idu_venta?></p>
-                                        <p><?php echo $ventas->num_empleado?></p>
-                                        <h2>$<?php echo number_format($ventas->total,2);?></h2>
+                                        <h1><?php echo $dato[4];?></h2>
+                                        <p><?php  echo $dato[1]. " " .$dato[2]?></p>
+                                        <h2>$<?php echo number_format($dato[3],2);?></h2>
                                     </div>
                                 </div>
 

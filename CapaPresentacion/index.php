@@ -2,21 +2,29 @@
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
-$consultaEmp = "SELECT Count(*) As total from juan.cat_empleados"; 
-$resultÉmp = pg_query($connect, $consultaEmp); 
-$rowEmp = pg_fetch_assoc($resultÉmp);
+$iOpcionEmp = 1;
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consultaEmp = "select juan.get_Total_Tablas($iOpcionEmp);"; 
+$resultEmp =  $connection->prepare($consultaEmp); 
+$resultEmp->execute();
+$datosEmp = $resultEmp->fetchAll();
 // echo $rowEmp['total']. " Empleados";
-// echo "<script> console.log('".$rowEmp["total"]."'); </script>";
-
+// foreach($datosEmp as $dato){
+// echo "<script> console.log('".$dato[0]."'); </script>";
+// }
 ?>
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
-$consultaArt = "SELECT Count(*) As total from juan.cat_articulos"; 
-$resultArt = pg_query($connect, $consultaArt); 
-$rowArt = pg_fetch_assoc($resultArt);
+$iOpcionArt = 2;
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consultaArt = "select juan.get_Total_Tablas($iOpcionArt);"; 
+$resultArt =  $connection->prepare($consultaArt); 
+$resultArt->execute();
+$datosArt = $resultArt->fetchAll();
+
 // echo $rowArt['total']. " Articulos";
 // echo "<script> console.log('".$rowArt["total"]."'); </script>";
 
@@ -24,10 +32,14 @@ $rowArt = pg_fetch_assoc($resultArt);
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
-$consultaVen = "SELECT Count(*) As total from juan.cat_ventas"; 
-$resultVen = pg_query($connect, $consultaVen); 
-$rowVen = pg_fetch_assoc($resultVen);
+$iOpcionVen = 3;
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consultaVen = "select juan.get_Total_Tablas(3);"; 
+$resultVen =  $connection->prepare($consultaVen); 
+$resultVen->execute();
+$datosVen = $resultVen->fetchAll();
+
 // echo $rowVen['total']. " Ventas";
 // echo "<script> console.log('".$rowVen["total"]."'); </script>";
 
@@ -35,10 +47,14 @@ $rowVen = pg_fetch_assoc($resultVen);
 
 <?php 
 include_once "../CapaDatos/conexion.php";
-$connect = pg_connect("host=10.27.113.159 port=5432 dbname=pruebas user=sysexhibicion password=979fe4c465b2ed68f700ec7079cb120c") or die('Could not connect: ' . pg_last_error());
-$consultaCen = "SELECT Count(*) As total from juan.cat_centros"; 
-$resultCen = pg_query($connect, $consultaCen); 
-$rowCen = pg_fetch_assoc($resultCen);
+$iOpcionCen = 4;
+$objeto = new Conexion();
+$connection = $objeto->Connect();
+$consultaCen = "select juan.get_Total_Tablas(4);"; 
+$resultCen =  $connection->prepare($consultaCen); 
+$resultCen->execute();
+$datosCen = $resultCen->fetchAll();
+
 // echo $rowCen['total']. " Centros";
 // echo "<script> console.log('".$rowCen["total"]."'); </script>";
 
@@ -106,7 +122,7 @@ $rowCen = pg_fetch_assoc($resultCen);
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Empleados</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php echo $rowEmp['total'];?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosEmp as $dato){ echo $dato[0]; }?></p>
                             </div>
                         </div>
 
@@ -126,7 +142,7 @@ $rowCen = pg_fetch_assoc($resultCen);
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Articulos</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php echo $rowArt['total'];?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosArt as $dato){ echo $dato[0]; }?></p>
                             </div>
                         </div>
 
@@ -146,7 +162,7 @@ $rowCen = pg_fetch_assoc($resultCen);
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Ventas</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php echo $rowVen['total'];?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosVen as $dato){ echo $dato[0]; }?></p>
                             </div>
                         </div>
 
@@ -166,7 +182,7 @@ $rowCen = pg_fetch_assoc($resultCen);
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Centros</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php echo $rowCen['total'];?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosCen as $dato){ echo $dato[0]; }?></p>
                             </div>
                         </div>
 

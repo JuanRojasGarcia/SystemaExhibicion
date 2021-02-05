@@ -1,0 +1,44 @@
+body{
+    background:#F1EEEE;
+    font-family: Muli,Arial,sans-serif;
+}
+
+/* .card{
+    border-radius: 6px;
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
+    background-color: #fff;
+    color: #252422;
+    margin-top: 20px;
+} */
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 6px;
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.50);
+    margin-top: 10px;
+
+}
+
+/* .row {
+display: flex;
+flex-wrap: wrap;
+margin-right: -0.75rem;
+margin-left: -0.75rem;
+} */
+.row{
+    margin-top: 20px;
+    text-align:center;
+    
+}
+
+.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+    padding-left: 225px;
+    top: 8px;
+}

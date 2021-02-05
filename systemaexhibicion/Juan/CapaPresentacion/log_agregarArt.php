@@ -23,6 +23,7 @@ $consulta = "select juan.Funcion_Articulo('$descripcion','$modelo',$precio,$exis
 $result =  $connection->prepare($consulta);  
 $result->execute();
 // $result->execute([$descripcion, $modelo, $precio, $existencia,$iOpcion]);
+echo "<script> console.log('".$result->execute()."'); </script>";
 
 if ($result = 1) {
 	header("Location: index.php");

@@ -16,11 +16,6 @@ $output = '';
         $resultConf->execute();
         $datosConf = $resultConf->fetchAll();
 
-
- 
-        
-
-
         foreach($datosConf as $dato)   
         {
             $tasaFinanc = $dato[1];

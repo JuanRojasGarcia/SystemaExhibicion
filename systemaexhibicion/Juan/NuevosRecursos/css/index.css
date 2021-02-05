@@ -1,0 +1,93 @@
+
+body{
+    background:#F1EEEE;
+    font-family: Muli,Arial,sans-serif;
+}
+
+/* .card{
+    border-radius: 6px;
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
+    background-color: #fff;
+    color: #252422;
+    margin-top: 20px;
+} */
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 6px;
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.50);
+    margin-top: 10px;
+}
+
+/* .row {
+display: flex;
+flex-wrap: wrap;
+margin-right: -0.75rem;
+margin-left: -0.75rem;
+} */
+
+#iconUser{
+    color: #059D48;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: bold; 
+    /* text-align: center; */
+    padding-left: 20px;
+    padding-top: 10px;
+
+
+}
+
+#iconArticle{
+    color: #f3bb45;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: bold; 
+    /* text-align: center; */
+    padding-left: 20px;
+    padding-top: 10px;
+
+
+}
+
+#iconSales{
+    color: #eb5e28;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: bold; 
+    /* text-align: center; */
+    padding-left: 20px;
+    padding-top: 10px;
+
+
+}
+
+#iconCentros{
+    color: #432F02;
+    font-size: 3em;
+    font-style: normal;
+    font-weight: bold; 
+    /* text-align: center; */
+    padding-left: 20px;
+    padding-top: 10px;
+
+
+}
+
+
+
+
+.card-footer{
+    background-color: #fff;
+    color: #252422;
+}
+
+
+

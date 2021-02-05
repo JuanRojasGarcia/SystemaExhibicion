@@ -20,10 +20,10 @@ $datos = $result->fetchAll();
 // }
 ?>
 
-<?php include_once ('./menu.html'); ?>
+<?php include_once ('./menu.html'); ?> <br>
 
 
-<form action="./log_editarCen.php" method="POST" autocomplete="off" class="col-md-6" style="float:none; margin:auto; top: 10px;">
+<form  autocomplete="off" class="col-md-6" style="float:none; margin:auto; top: 10px;">
 <input type="hidden" name="numCentro" value="<?php foreach($datos as $dato)   {echo $dato[0];} ?>">
     <div class="form-group">
         <label for="numCentro">Numero Centro</label>
@@ -35,6 +35,8 @@ $datos = $result->fetchAll();
     </div>
     <div class="form-group">
         <a class="btn btn-secondary" href="./index.php"><i ></i>Cancel</a>
-        <button type="submit" class="btn btn-info" ><i ></i>Save</button>
+        <button type="button" class="btn btn-info" id="editarCentro"><i ></i>Save</button>
     </div>
 </form>
+<script src="js/js_altas.js"></script>
+

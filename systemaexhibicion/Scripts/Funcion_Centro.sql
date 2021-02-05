@@ -22,7 +22,7 @@ $body$ language plpgsql;
 
 --DROP FUNCTION juan.funcion_centro(integer,character varying,integer)
 
---select juan.Funcion_Centro(25054,'Lonja',1);
+--select * from juan.Funcion_Centro(25055,'Lonja',1);
 --select juan.Funcion_Centro(25048,'',2);
 --select juan.Funcion_Centro(25045,'',3);
 

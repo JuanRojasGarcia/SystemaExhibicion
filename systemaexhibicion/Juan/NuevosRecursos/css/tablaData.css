@@ -1,0 +1,34 @@
+    body{
+        background:#F1EEEE;
+        font-family: Helvetica,Arial,sans-serif;
+    }
+
+    .row{
+        text-align:center;
+        margin-top: 30px;
+
+        float:none; 
+        margin-left:auto;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 6px;
+        box-shadow: 0 6px 10px -4px rgba(0,0,0,.50);
+        margin-top: 10px;
+
+
+
+    }
+
+    .card-header{
+        text-align: left;
+    }
+

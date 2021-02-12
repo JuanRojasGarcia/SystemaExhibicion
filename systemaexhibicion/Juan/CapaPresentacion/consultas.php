@@ -1,7 +1,7 @@
 <?php include_once "./menu.html"; ?> <br> <br>
 <link href="../NuevosRecursos/css/consultas.css" rel="stylesheet" />
 <div id="layoutSidenav">
-    <div id="layoutSidenav_content">    
+    <div id="layoutSidenav_content">     
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -9,9 +9,9 @@
                         <label class="label"><input type="radio" name="optradio" id="radEmp" >Empleados</label>
                         <label class="label"><input type="radio" name="optradio" id="radCen" >Centros</label>
                         <label class="label"><input type="radio" name="optradio" id="radArt" >Articulos</label>
-                    </form>
                 </div>
-            </div>
+            </div> 
+            <button type="button" style="float:right;" class="btn btn-success" id="btnPdf">Generar PDF</button>
 
             <form class="card" style="float:none; margin:auto; margin-top:40px; display:none;" id="formSearch">
                 <div class="card-body">

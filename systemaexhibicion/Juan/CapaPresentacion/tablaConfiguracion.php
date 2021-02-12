@@ -28,7 +28,7 @@ $datos = $consulta->fetchAll();
                 <td><?php echo $dato[3];?></td>
 
                 <td>
-                    <a  href="<?php echo "./log_eliminarConf.php?id_conf=" . $dato[0] ?>" onclick="return confirm('Are you sure to delete this Article?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
+                    <a  href="<?php echo "./log_eliminarConf.php?id_conf=" . $dato[0] ?>" onclick="return confirm('Are you sure to delete this Configuracion?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
                 </td>
             </tr>
             <?php } ?>

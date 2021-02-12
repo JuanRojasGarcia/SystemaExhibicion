@@ -13,14 +13,14 @@
 <link href="../NuevosRecursos/css/ventas.css" rel="stylesheet" />
 <div id="layoutSidenav">
     <div id="layoutSidenav_content">    
-        <div class="container-fluid">
+        <div class="container-fluid"> 
             <div class="row">
                 <div class="col-xl-12">
                         
                     <div class="container card">
                         <div class="card-body">
                             <div>
-                                <form action="./log_ventas.php"  method="GET" autocomplete="off" id="form">
+                                <form  autocomplete="off" id="form">
                                     <div class="form-group row">
                                         <div class="col input-group mb-6">
                                             <select class="input-group-append custom-select" id="selectEmp" name="selectEmp">
@@ -125,7 +125,7 @@
                                         <div class="col-lg-10"></div>
                                         <div>
                                             <a class="btn btn-danger" href="./index.php"><i ></i>Cancel</a>
-                                            <button type="submit" class='btn btn-success' id="btnSave">Save</button>
+                                            <button type="button" class='btn btn-success' id="btnSave">Save</button>
                                             <!-- <button class='btn btn-primary' id="btnNext">Next</button>-->
                                             <a class="btn btn-primary" id="btnNext" style="color:white;"><i ></i>Next</a>
                                         </div>
@@ -152,6 +152,6 @@
 </div>
 <script src="js/js_ventas.js"></script>
 
-    
+     
     
  

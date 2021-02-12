@@ -32,7 +32,7 @@ $datos = $consulta->fetchAll();
 
                 <td>
                     <a  href="<?php echo "./frm_editarEmp.php?id_emp=" . $dato[0]; ?>"><i class="fa fa-pencil fa-lg btn-outline-warning" aria-hidden="true"></i></a>
-                    <a  href="<?php echo "./log_eliminarEmp.php?id_emp=" . $dato[0]; ?>" onclick="return confirm('Are you sure to delete this Article?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
+                    <a  href="<?php echo "./log_eliminarEmp.php?id_emp=" . $dato[0]; ?>" onclick="return confirm('Are you sure to delete this Empleado?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
                 </td>
             </tr>
             <?php } ?>

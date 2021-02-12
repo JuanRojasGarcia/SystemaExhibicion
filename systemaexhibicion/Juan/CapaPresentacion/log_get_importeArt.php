@@ -1,4 +1,3 @@
-  
 <?php  
 include_once "../CapaDatos/conexion.php";
 $objeto = new Conexion();

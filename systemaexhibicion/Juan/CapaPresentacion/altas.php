@@ -68,11 +68,11 @@ $datos = $consulta->fetchAll();
 
                     <div class="form-group">
                         <label for="numCentro">Numero Centro</label>
-                        <input required name="numCentro" type="number" id="numCentro" class="form-control"  placeholder="Enter Numero" >
+                        <input required name="numCentro" type="text" id="numCentro" class="form-control"  placeholder="Enter Numero" onkeypress="return soloNumeros(event)">
                     </div>
                     <div class="form-group">
                         <label for="nombreCen">Nombre Centro</label>
-                        <input required name="nombreCentro" type="text" id="nombreCen" class="form-control"  placeholder="Enter Nombre" >
+                        <input required name="nombreCentro" type="text" id="nombreCen" class="form-control"  placeholder="Enter Nombre" onkeypress="return soloLetras(event)">
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn-save" id="saveCentro"><i class="fa fa-floppy-o" ></i>&nbsp;Save </button>
@@ -88,19 +88,19 @@ $datos = $consulta->fetchAll();
                     <h4 style="text-align:center;">Alta Articulo</h4>
                     <div class="form-group">
                         <label for="descripcion">Descripcion</label>
-                        <input required name="descripcion" type="text" id="descripcion" class="form-control"  placeholder="Enter Descripcion">
+                        <input required name="descripcion" type="text" id="descripcion" class="form-control"  placeholder="Enter Descripcion" value="" onkeypress="return soloLetras(event)" />
                     </div>
                     <div class="form-group">
                         <label for="modelo">Modelo</label>
-                        <input required name="modelo" type="text" id="modelo" class="form-control"  placeholder="Enter Modelo">
+                        <input required name="modelo" type="text" id="modelo" class="form-control"  placeholder="Enter Modelo" value="" onkeypress="return Modelo(event)"> 
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio</label>
-                        <input required name="precio" type="text" id="precio" class="form-control"  placeholder="Enter Precio">
+                        <input required name="precio" type="text" id="precio" class="form-control"  placeholder="Enter Precio"  onkeypress="return Precio(event)">
                     </div>
                     <div class="form-group">
                         <label for="existencia">Existencia</label>
-                        <input required name="existencia" type="number" id="existencia" class="form-control"  placeholder="Enter Existencia">
+                        <input required name="existencia" type="text" id="existencia" class="form-control"  placeholder="Enter Existencia" value="" onkeypress="return soloNumeros(event)">
                     </div>
 
                     <div class="form-group">
@@ -119,7 +119,7 @@ $datos = $consulta->fetchAll();
                     <h4 style="text-align:center;">Alta Empleado</h4>
                     <div class="form-group">
                         <label for="numEmpleado">Numero Empleado</label>
-                        <input required name="numEmpleado" type="number" id="numEmpleado" class="form-control"  placeholder="Enter Numero">
+                        <input required name="numEmpleado" type="text" id="numEmpleado" class="form-control"  placeholder="Enter Numero" onkeypress="return soloNumeros(event)">
                     </div>
                     <div class="form-group ">
                         <label for="iduCentro">Centros</label> <br>
@@ -132,15 +132,15 @@ $datos = $consulta->fetchAll();
                     </div>
                     <div class="form-group">
                         <label for="nombreEmp">Nombre</label>
-                        <input required name="nombreEmp" type="text" id="nombreEmp" class="form-control"  placeholder="Enter Nombre Completo">
+                        <input required name="nombreEmp" type="text" id="nombreEmp" class="form-control"  placeholder="Enter Nombre Completo" onkeypress="return soloLetras(event)">
                     </div>
                     <div class="form-group">
                         <label for="apellidoEmp">Apellido</label>
-                        <input required name="apellidoEmp" type="text" id="apellidoEmp" class="form-control"  placeholder="Enter Apellido Completo">
+                        <input required name="apellidoEmp" type="text" id="apellidoEmp" class="form-control"  placeholder="Enter Apellido Completo" onkeypress="return soloLetras(event)">
                     </div>
                     <div class="form-group">
                         <label for="correoEmp">Email</label>
-                        <input required name="correoEmp" type="email" id="correoEmp" class="form-control"  placeholder="Enter Email">
+                        <input required name="correoEmp" type="text" id="correoEmp" class="form-control"  placeholder="Enter Email" onkeypress="return Correo(event)">
                     </div>
 
                     <div class="form-group">
@@ -149,10 +149,31 @@ $datos = $consulta->fetchAll();
                 </div>
             </form> <br>
 
-        </div>
+                <div class="container">
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal" style="align-content: center;">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                        
+                            <!-- Modal body -->
+                            <div class="modal-body" id="getCode">
+                            </div>
+                            
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                            <button type="button" id="cancelModal" class="btn btn-success" data-dismiss="modal" >Close</button>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
     </div>
 </div>
 <script src="js/js_altas.js"></script>
+<script src="js/js_funcGenerales.js"></script>
+
 
 
 

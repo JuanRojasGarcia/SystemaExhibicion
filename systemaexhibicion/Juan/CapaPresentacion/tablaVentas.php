@@ -30,7 +30,7 @@ $datos = $consulta->fetchAll();
                 <td><?php echo $dato[4];?></td>
 
                 <td>
-                    <a  href="<?php echo "./log_eliminarVen.php?idu_ven=" . $dato[0]; ?>" onclick="return confirm('Are you sure to delete this Venta?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
+                    <a  href="<?php echo "./log_eliminarVen.php?idu_ven=" . $dato[0];  ?>" onclick="return confirm('Are you sure to delete this Venta?');"><i class="fa fa-trash fa-lg btn-outline-danger" aria-hidden="true"></i></a>
                 </td>
             </tr>
             <?php } ?>

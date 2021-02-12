@@ -5,7 +5,7 @@ as $body$
 begin
 	if p_iOpcion = 1 then
 		return query SELECT * FROM juan.cat_articulos 
-			     WHERE descripcion LIKE p_search;
+			     WHERE descripcion ILIKE p_search;
 	elseif p_iOpcion = 2 then
 		return query SELECT * FROM juan.cat_articulos ORDER BY idu_articulo;
 	end if;
@@ -16,5 +16,5 @@ $body$ language plpgsql;
 
 DROP FUNCTION juan.funcion_consultar_articulo(character varying,integer)
 
-select * from juan.Funcion_Consultar_Articulo('',2);
+select * from juan.Funcion_Consultar_Articulo('%m%',1);
 

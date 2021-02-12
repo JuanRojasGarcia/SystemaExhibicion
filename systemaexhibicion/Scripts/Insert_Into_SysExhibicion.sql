@@ -1,18 +1,18 @@
 ﻿--Insert Into 
 
-insert into juan.cat_articulos (idu_articulo,descripcion,modelo,precio,existencia)  
-SELECT 100,'Monitor','27ul500-w',5689.56,10 union all
-SELECT 200,'Escritorio','',15697.99,15  union all
-SELECT 300,'Teclado','HP keyboard 100',3489.87,20  union all
-SELECT 400,'Silla','Cairo',6548.44,7  union all
-SELECT 500,'Sillon','',25649.12,5  union all
-SELECT 600,'Estufa','EMC5044CAISO',18649.15,4  union all
-SELECT 700,'Lavadora','Wsa1102pd',21639.55,1  union all
-SELECT 800,'Refrigerador','Dfr-25210gn 9p',29498.45,9  union all
-SELECT 900,'Laptop','15-da2017la',16748.99,12  union all
-SELECT 1000,'Play 4','Cuh-2015a/500gb',10948.99,7  union all
-SELECT 1100,'Audifonos','WH-CH510/WZ UC',5489.11,11  union all
-SELECT 1200,'Tablet','Galaxy tab s7',18649.99,8  
+insert into juan.cat_articulos (descripcion,modelo,precio,existencia)  
+SELECT 'Monitor','27ul500-w',5689.56,10 union all
+SELECT 'Escritorio','',15697.99,15  union all
+SELECT 'Teclado','HP keyboard 100',3489.87,20  union all
+SELECT 'Silla','Cairo',6548.44,7  union all
+SELECT 'Sillon','',25649.12,5  union all
+SELECT 'Estufa','EMC5044CAISO',18649.15,4  union all
+SELECT 'Lavadora','Wsa1102pd',21639.55,1  union all
+SELECT 'Refrigerador','Dfr-25210gn 9p',29498.45,9  union all
+SELECT 'Laptop','15-da2017la',16748.99,12  union all
+SELECT 'Play 4','Cuh-2015a/500gb',10948.99,7  union all
+SELECT 'Audifonos','WH-CH510/WZ UC',5489.11,11  union all
+SELECT 'Tablet','Galaxy tab s7',18649.99,8  
 
 insert into juan.cat_centros(idu_centro, nombre_centro)  
 SELECT 25045,'Calexico' union all

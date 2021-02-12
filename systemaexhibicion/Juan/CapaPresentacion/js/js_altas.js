@@ -56,23 +56,32 @@ $(document).ready(function(){
 
     });
 
+
     // Articulos
 
-    $('#saveArticulo').on('click', function(e) {        
+    $('#saveArticulo').on('click', function(e) {      
         var descripcion = $('#descripcion').val();
         var modelo = $('#modelo').val();
         var precio = $('#precio').val();
         var existencia = $('#existencia').val();
         var iopcion = 1;
-        var iSwitch = 1;
+        var iSwitch = 1; 
 
         $.ajax({  
             url: "./ajax/Proc_Articulos.php",  
             method:"POST",  
             data:{descripcion:descripcion,modelo:modelo,precio:precio,existencia:existencia,iopcion:iopcion,iSwitch:iSwitch},  
-            succes: function(sucess) {
+            success: function(success) {
                 console.log("success");
-                console.log(sucess);
+                console.log(success);   
+                
+                
+                $("#getCode").html(success);
+                $("#myModal").modal('show');
+
+                // $('#cancelModal').on('click', function(e) {   
+                //     location.href = '../CapaPresentacion/altas.php';
+                // });
             },
             error: function(error) {
                 console.log("error");
@@ -81,6 +90,9 @@ $(document).ready(function(){
             complete: function(complete) {
                 console.log("complete");
                 console.log(complete);
+
+                // $("#getCode").html(complete);
+                // $("#myModal").modal('show');
             }
         });
 
@@ -99,9 +111,17 @@ $(document).ready(function(){
             url: "./ajax/Proc_Articulos.php",  
             method:"POST",  
             data:{iduArticulo:iduArticulo,descripcion:descripcion,modelo:modelo,precio:precio,existencia:existencia,iopcion:iopcion,iSwitch:iSwitch},  
-            succes: function(sucess) {
+            success: function(success) {
                 console.log("success");
-                console.log(sucess);
+                console.log(success);
+
+                                
+                $("#getCode").html(success);
+                $("#myModal").modal('show');
+
+                $('#cancelModal').on('click', function(e) {   
+                    location.href = '../CapaPresentacion/tableData.php';
+                });
             },
             error: function(error) {
                 console.log("error");
@@ -129,9 +149,18 @@ $(document).ready(function(){
             url: "./ajax/Proc_Centro.php",  
             method:"POST", 
             data:{iduCentro: iduCentro, nomCentro:nomCentro, iopcion:iopcion, iSwitch:iSwitch},  
-            succes: function(respuesta) {
+            success: function(respuesta) {
                 console.log("success");
                 console.log(respuesta);
+
+                $("#getCode").html(respuesta);
+                $("#myModal").modal('show');
+
+
+                $('#cancelModal').on('click', function(e) {   
+                    location.href = '../CapaPresentacion/altas.php';
+                    
+                });
                 
             },
             error: function(error) {
@@ -158,9 +187,17 @@ $(document).ready(function(){
             url: "./ajax/Proc_Centro.php",  
             method:"POST",  
             data:{iduCentro:iduCentro,nomCentro:nomCentro,iopcion:iopcion,iSwitch:iSwitch},  
-            succes: function(sucess) {
+            success: function(success) {
                 console.log("success");
-                console.log(sucess);
+                console.log(success);
+
+                                                
+                $("#getCode").html(success);
+                $("#myModal").modal('show');
+
+                $('#cancelModal').on('click', function(e) {   
+                    location.href = '../CapaPresentacion/tableData.php';
+                });
             },
             error: function(error) {
                 console.log("error");
@@ -189,9 +226,17 @@ $(document).ready(function(){
             url: "./ajax/Proc_Empleado.php",  
             method:"POST",  
             data:{numEmpleado:numEmpleado, iduCentro:iduCentro, nombre:nombre, apellido:apellido, email:email, iopcion:iopcion, iSwitch:iSwitch},  
-            succes: function(sucess) {
+            success: function(success) {
                 console.log("success");
-                console.log(sucess);
+                console.log(success);
+
+                $("#getCode").html(success);
+                $("#myModal").modal('show');
+
+                $('#cancelModal').on('click', function(e) {   
+                        location.href = '../CapaPresentacion/altas.php';
+
+                });
             },
             error: function(error) {
                 console.log("error");
@@ -218,9 +263,17 @@ $(document).ready(function(){
             url: "./ajax/Proc_Empleado.php",  
             method:"POST",  
             data:{numEmpleado:numEmpleado, iduCentro:iduCentro, nombre:nombre, apellido:apellido, email:email, iopcion:iopcion, iSwitch:iSwitch},  
-            succes: function(sucess) {
+            success: function(success) {
                 console.log("success");
-                console.log(sucess);
+                console.log(success);
+
+                                                
+                $("#getCode").html(success);
+                $("#myModal").modal('show');
+
+                $('#cancelModal').on('click', function(e) {   
+                    location.href = '../CapaPresentacion/tableData.php';
+                });
             },
             error: function(error) {
                 console.log("error");
@@ -236,4 +289,6 @@ $(document).ready(function(){
 
 
 });
+
+
 

@@ -11,13 +11,32 @@ $(document).ready(function(){
 
         //Funcion para Obtener el nombre del empleado
 
+        // $('#selectEmp').change(function(){  
+        //     //const selectEmp = $('#selectEmp');
+        //     var id = $(this).val();  
+        //     $.ajax({  
+        //         url:"./log_get_dataEmp.php",  
+        //         method:"POST",  
+        //         data:{id:id},  
+        //         success:function(data){  
+        //             $('#emailEmp').html(data);  
+        //             //selectEmp.prop('disabled', true)
+        //         }  
+        //     }); 
+
+
+        // });}
+
+
+
         $('#selectEmp').change(function(){  
             //const selectEmp = $('#selectEmp');
-            var id = $(this).val();  
+            var id = $(this).val(); 
+            var iSwitch = 3; 
             $.ajax({  
-                url:"./log_get_dataEmp.php",  
+                url:"./ajax/Proc_Venta.php",  
                 method:"POST",  
-                data:{id:id},  
+                data:{id:id, iSwitch:iSwitch},  
                 success:function(data){  
                     $('#emailEmp').html(data);  
                     //selectEmp.prop('disabled', true)
@@ -26,6 +45,7 @@ $(document).ready(function(){
 
 
         });
+
 
             //console.log($('#cantidadArt').val());
 
@@ -47,11 +67,29 @@ $(document).ready(function(){
             const bonEnganche = $('#egbonus');
             const total = $('#total');
 
-            var id = $('#selectArt').val();  
+            // var id = $('#selectArt').val();  
+            // $.ajax({  
+            //     url:"./log_get_dataArt.php",  
+            //     method:"POST",  
+            //     data:{id:id},  
+            //     success:function(data){           
+            //         $('#tableBodyForm').html(data) ;
+
+            //         $('#enganche').empty() ;
+            //         $('#egbonus').empty() ;
+            //         $('#total').val('0') ;
+
+            //         $('#enganche').append('0') ;
+            //         $('#egbonus').append('0') ;
+            //     }  
+            // });
+
+            var id = $('#selectArt').val(); 
+            var iSwitch = 4;  
             $.ajax({  
-                url:"./log_get_dataArt.php",  
+                url:"./ajax/Proc_Venta.php",  
                 method:"POST",  
-                data:{id:id},  
+                data:{id:id, iSwitch:iSwitch},  
                 success:function(data){           
                     $('#tableBodyForm').html(data) ;
 
@@ -67,6 +105,8 @@ $(document).ready(function(){
             const selectArt = $('#selectArt');
             selectArt.prop('disabled', false)
         });
+
+
 
 
 
@@ -137,21 +177,55 @@ $(document).ready(function(){
                 success:function(data){       
                     $('#tableBodyPayments').html(data);
                 }
-                
-            
-        });   
+            });   
 
-        if (!$('#pay_3').is('checked') || !$('#pay_6').is('checked') || !$('#pay_9').is('checked') || !$('#pay_12').is('checked')){
-            const message = $('#message');
-            message.html('Necesitas seleccionar un Pago mensual').show();
-            message.addClass('alert-danger');
-            setTimeout( function ( ) { 
-                message.html('Necesitas seleccionar un Pago mensual').hide();  
-            }, 4000 ); 
-            return
+            if (!$('#pay_3').is('checked') || !$('#pay_6').is('checked') || !$('#pay_9').is('checked') || !$('#pay_12').is('checked')){
+                const message = $('#message');
+                message.html('Necesitas seleccionar un Pago mensual').show();
+                message.addClass('alert-danger');
+                setTimeout( function ( ) { 
+                    message.html('Necesitas seleccionar un Pago mensual').hide();  
+                }, 4000 ); 
+                return
             }
 
-    }); 
+        }); 
 
-
+        $('#btnSave').on('click', function(e) {        
+            var numEmpleado = $('#selectEmp').val();
+            var totalApagar = $('#total').val();
+            var fecha =  $("#fecha").val();
+            var iopcion = 1;
+            var iSwitch = 1;
+    
+            $.ajax({  
+                url:"./ajax/Proc_Venta.php",  
+                method:"POST",  
+                data:{numEmpleado:numEmpleado,totalApagar:totalApagar,fecha:fecha,iopcion:iopcion,iSwitch:iSwitch},  
+                success: function(success) {
+                    console.log("success");
+                    console.log(success);   
+                    
+                    
+                    $("#getCode").html(success);
+                    $("#myModal").modal('show');
+    
+                    $('#cancelModal').on('click', function(e) {   
+                        location.href = '../CapaPresentacion/frm_ventas.php';
+                    });
+                },
+                error: function(error) {
+                    console.log("error");
+                    console.log(error);
+                },	
+                complete: function(complete) {
+                    console.log("complete");
+                    console.log(complete);
+    
+                    // $("#getCode").html(complete);
+                    // $("#myModal").modal('show');
+                }
+            });
+    
+        });
 });  

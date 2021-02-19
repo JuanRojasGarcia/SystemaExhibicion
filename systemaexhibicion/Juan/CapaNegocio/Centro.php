@@ -72,7 +72,7 @@
 
         public function Func_Filtar_Centros()
         {
-            $consulta = "select * from juan.Funcion_Filtro_Centro(".$this->iduCentro.", '".$this->nomCentro."');";
+            $consulta = "select * from juan.Funcion_Filtro_Centro('".filter_var($this->FILTER_SANITIZE_ENTERO($this->iduCentro), FILTER_SANITIZE_NUMBER_INT)."', '".filter_var($this->FILTER_SANITIZE_NOMCENTRO($this->nomCentro), FILTER_SANITIZE_STRING  )."');";
             return $this->db($consulta);
         }
 

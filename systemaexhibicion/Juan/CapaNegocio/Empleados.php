@@ -52,7 +52,7 @@
 
         function FILTER_SANITIZE_NOMBRECOMPLETO($string)
         {
-            return preg_replace('/[^a-zA-Z]/', '', $string); 
+            return preg_replace('/[^a-zA-Z\s]/', '', $string); 
 
         }
 
@@ -85,6 +85,12 @@
         public function Func_Get_Empleados()
         {
             $consulta = "select * from juan.Funcion_Consultar_Empleado('', ".$this->iopcion.");";
+            return $this->db($consulta);
+        }
+
+        public function Func_Filtar_Empleados()
+        {
+            $consulta = "select * from juan.Funcion_Filtro_Empleado('".$this->nombre."', '".$this->apellido."');";
             return $this->db($consulta);
         }
 

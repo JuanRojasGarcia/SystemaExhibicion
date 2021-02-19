@@ -74,7 +74,7 @@
 
         public function Func_Actualizar_Articulo()
         {
-            $consulta = "select juan.Funcion_Articulo('".filter_var($this->FILTER_SANITIZE_DESCRIPTION($this->descripcion), FILTER_SANITIZE_STRING  ) ."' , '".filter_var($this->FILTER_SANITIZE_MODELO($this->modelo), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH)."' , ".filter_var($this->precio, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)." , ".filter_var($this->FILTER_SANITIZE_ENTERO($this->existencia), FILTER_SANITIZE_NUMBER_INT)." ,".filter_var($this->FILTER_SANITIZE_ENTERO($this->iopcion),FILTER_SANITIZE_NUMBER_INT )." );";
+            $consulta = "select juan.Funcion_Articulo(".filter_var($this->FILTER_SANITIZE_ENTERO($this->iduArticulo),FILTER_SANITIZE_NUMBER_INT ).",'".filter_var($this->FILTER_SANITIZE_DESCRIPTION($this->descripcion), FILTER_SANITIZE_STRING  ) ."' , '".filter_var($this->FILTER_SANITIZE_MODELO($this->modelo), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH)."' , ".filter_var($this->precio, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)." , ".filter_var($this->FILTER_SANITIZE_ENTERO($this->existencia), FILTER_SANITIZE_NUMBER_INT)." ,".filter_var($this->FILTER_SANITIZE_ENTERO($this->iopcion),FILTER_SANITIZE_NUMBER_INT )." );";
             return $this->db($consulta);
         }
 
@@ -96,8 +96,15 @@
             return $this->db($consulta);
         }
 
+        
+        public function Func_Filtar_Articulo()
+        {
+            $consulta = "select * from juan.Funcion_Filtro_Articulo('".filter_var($this->FILTER_SANITIZE_ENTERO($this->iduArticulo),FILTER_SANITIZE_NUMBER_INT )."' ,'".filter_var($this->FILTER_SANITIZE_DESCRIPTION($this->descripcion), FILTER_SANITIZE_STRING  )."', '".filter_var($this->FILTER_SANITIZE_MODELO($this->modelo), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH)."');";
+            return $this->db($consulta);
+        }
+
+
 
 
     } 
 ?>
-

@@ -24,6 +24,7 @@ $datos = $consulta->fetchAll();
 
 
 <link href="../NuevosRecursos/css/altas.css" rel="stylesheet" />
+
 <div id="layoutSidenav">
     <div id="layoutSidenav_content">    
         <div class="container-fluid">
@@ -149,17 +150,14 @@ $datos = $consulta->fetchAll();
                 </div>
             </form> <br>
 
-                <div class="container">
-                    <!-- The Modal -->
+                <!-- <div class="container">
                     <div class="modal" id="myModal" style="align-content: center;">
                         <div class="modal-dialog">
                         <div class="modal-content">
                         
-                            <!-- Modal body -->
                             <div class="modal-body" id="getCode">
                             </div>
                             
-                            <!-- Modal footer -->
                             <div class="modal-footer">
                             <button type="button" id="cancelModal" class="btn btn-success" data-dismiss="modal" >Close</button>
                             </div>
@@ -167,7 +165,7 @@ $datos = $consulta->fetchAll();
                         </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
     </div>
 </div>

@@ -8,7 +8,7 @@
  $consultaEmp->execute();
  $datosEmp = $consultaEmp->fetchAll();
 
-?>
+?> 
 
 <link href="../NuevosRecursos/css/ventas.css" rel="stylesheet" />
 <div id="layoutSidenav">
@@ -23,7 +23,7 @@
                                 <form  autocomplete="off" id="form">
                                     <div class="form-group row">
                                         <div class="col input-group mb-6">
-                                            <select class="input-group-append custom-select" id="selectEmp" name="selectEmp">
+                                            <select class="selectpicker" data-size="7" id="selectEmp" name="selectEmp">
                                                 <option value="" selected="selected">Choose...</option>
                                                 <?php foreach($datosEmp as $datoemp){  ?>
                                                 <option value="<?php echo $datoemp[0]; ?>"><?php echo $datoemp[2]. " " .$datoemp[3] ?>  </option>
@@ -41,7 +41,7 @@
 
                                     <div class="form-group row">
                                         <div class="col input-group mb-3">
-                                            <select class="input-group-append custom-select" id="selectArt" >
+                                            <select class="selectpicker" data-size="7" id="selectArt" >
                                                 
                                                 <?php
                                                 include_once "../CapaDatos/conexion.php";
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive" style="float:none; margin:auto;">
-                                        <table class="table text-black">
+                                        <table class="table text-black" style="text-align: center;">
                                             <thead>
                                                 <tr>
                                                     <th>Descripcion</th>
@@ -77,9 +77,18 @@
                                                 </tr>
                                             </thead>
 
-                                            <tbody id="tableBodyForm">
+                                            <tbody id="tableBodyForm" class="d-none">
+                                                <tr>
+                                                    <td><p id="descripcion"  name="descripcion"></p> </td>
+                                                    <td><p id="modelos"  name="modelos"></p> </td>
+                                                    <td><input id="cantidadArt" name="cantidadArt" class="qty" value="0" type="number" min="0"></td>
+                                                    <td><input id="idPrecio" name="idPrecio" value="0" type="text"></td>
+
+                                                    <!-- <td id="idPrecio" name="idPrecio"> </td> -->
+                                                    <td id="importeArt" class="rowAmount"> </td>
+                                                </tr>
                                             </tbody>
-                                        </table>
+                                        </table> 
                                     </div>
                                     <div class="container text-black">
                                         <div class="row">
@@ -125,7 +134,7 @@
                                         <div class="col-lg-10"></div>
                                         <div>
                                             <a class="btn btn-danger" href="./index.php"><i ></i>Cancel</a>
-                                            <button type="button" class='btn btn-success' id="btnSave">Save</button>
+                                            <button type="button" class='btn btn-success d-none' id="btnSave">Save</button>
                                             <!-- <button class='btn btn-primary' id="btnNext">Next</button>-->
                                             <a class="btn btn-primary" id="btnNext" style="color:white;"><i ></i>Next</a>
                                         </div>

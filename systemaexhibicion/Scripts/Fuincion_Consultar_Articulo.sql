@@ -4,10 +4,10 @@ returns table(idarticulo integer, descrip varchar, model varchar, prec numeric, 
 as $body$
 begin
 	if p_iOpcion = 1 then
-		return query SELECT * FROM juan.cat_articulos 
+		return query SELECT idu_articulo, descripcionm, modelo, precio, existencia  FROM juan.cat_articulos 
 			     WHERE descripcion ILIKE p_search;
 	elseif p_iOpcion = 2 then
-		return query SELECT * FROM juan.cat_articulos ORDER BY idu_articulo;
+		return query SELECT idu_articulo, descripcionm, modelo, precio, existencia  FROM juan.cat_articulos ORDER BY idu_articulo;
 	end if;
 
 end;

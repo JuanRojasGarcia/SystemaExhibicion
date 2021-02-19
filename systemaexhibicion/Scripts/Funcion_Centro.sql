@@ -16,7 +16,7 @@ begin
 		end if;
 	elseif p_iOpcion = 2 then 
 		if exists (select idu_centro from juan.cat_centros  WHERE idu_centro = p_idu_centro) then
-			UPDATE juan.cat_centros SET nombre_centro=p_nombre_centro 
+			UPDATE juan.cat_centros SET nombre_centro = p_nombre_centro 
 			WHERE idu_centro = p_idu_centro;
 			return 1;
 		else 
@@ -37,8 +37,10 @@ $body$ language plpgsql;
  DROP FUNCTION juan.funcion_centro(integer,character varying,integer)
 
 select * from juan.Funcion_Centro(9,'Lonja',1);
-select juan.Funcion_Centro(9,'PruebaDos',2);
+select juan.Funcion_Centro(00000,'Prueba',2);
 select juan.Funcion_Centro(9,'',3);
 
 
 select * from  juan.cat_centros
+
+select idu_centro from juan.cat_centros  WHERE idu_centro = 0

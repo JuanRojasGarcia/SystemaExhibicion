@@ -39,7 +39,7 @@ $body$ language plpgsql;
 
 DROP FUNCTION juan.funcion_articulo(integer,character varying,character varying,numeric,integer,integer)
 
-select juan.Funcion_Articulo('Monitor HD','Bamboo FR32',5689.56,10,1);
+select juan.Funcion_Articulo(0,'Monitor l','Bamboo FR32',5689.56,10,1);
 select juan.Funcion_Articulo(200,' ',' ',0,0,3);
 select juan.Funcion_Articulo(999,'Procesador','DEF-43F',5689.56,10,2);
 

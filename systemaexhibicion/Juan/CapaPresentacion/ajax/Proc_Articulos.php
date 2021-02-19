@@ -31,7 +31,7 @@
                 echo $mensajeError;
             }
 
-        break;
+        break; 
         // Modificar Articulo
         case 2:
             $articulo->set_Idu($_REQUEST["iduArticulo"]);
@@ -43,7 +43,7 @@
         
             $respuesta = $articulo->Func_Actualizar_Articulo();
             $respuesta = pg_fetch_array($respuesta);
-            $mensajeSuccess = "Se Agrego Correctamente";
+            $mensajeSuccess = "Se Modifico Correctamente";
             $mensajeError = "El Codigo no Existe";
 
             // echo "<script> console.log('".print_r($respuesta)."'); </script>";
@@ -132,6 +132,42 @@
 
 
 
+        break;
+        case 5:
+
+            $articulo->set_Idu($_REQUEST["skuArt"]);
+            $articulo->set_Descripcion($_REQUEST["descArt"]);
+            $articulo->set_Modelo($_REQUEST["modelArt"]);
+
+
+            $respuesta = $articulo->Func_Filtar_Articulo();
+            $row = pg_fetch_all($respuesta);
+
+
+            // echo "<script> console.log('".$respuesta[0])."'); </script>";
+
+            // while ($row=pg_fetch_row($respuesta)){
+            //     echo $row[0]. " " . $row[1]. "<br />";
+        
+            // }
+
+            // echo "<script> console.log('".$respuesta[0]."'); </script>";
+
+
+                while ($row=pg_fetch_row($respuesta))
+                {
+
+                    echo $row[0];
+                // $customers[] = array(
+                //     'idu_centro' => $row[0],
+                //     'nombre_centro' => $row[0]
+                // );
+                // echo json_encode($customers);
+                // echo "<script> console.log('".print_r($customers)."'); </script>";
+
+                }
+            // echo json_encode($customers);
+            // echo "<script> console.log('".$customers[0]."'); </script>";
         break;
     }
 ?>

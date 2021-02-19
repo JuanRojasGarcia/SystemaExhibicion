@@ -4,10 +4,6 @@
 
     switch ($_REQUEST["iSwitch"]){
         case 1:
-            if (!isset($_REQUEST["iduCentro"]) || $_REQUEST["iduCentro"] == 0 ||  $_REQUEST["nomCentro"] == ''){
-                echo $messageValid = "Agrege Todos Los Campos";
-                exit();
-            }
                 $centro->set_iduCentro($_REQUEST["iduCentro"]);
                 $centro->set_nombreCentro($_REQUEST["nomCentro"]);
                 $centro->set_Opcion($_REQUEST["iopcion"]);
@@ -25,7 +21,7 @@
                     echo $mensajeError;
                 }
             
-
+ 
         break;
         case 2:
 

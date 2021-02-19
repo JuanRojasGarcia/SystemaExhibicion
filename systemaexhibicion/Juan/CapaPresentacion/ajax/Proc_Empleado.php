@@ -5,11 +5,6 @@
 
     switch ($_REQUEST["iSwitch"]){
         case 1:
-            if (!isset($_REQUEST["numEmpleado"]) ||  $_REQUEST["numEmpleado"] == 0 || $_REQUEST["iduCentro"] == '' || $_REQUEST["nombre"] == '' || $_REQUEST["apellido"] == '' || $_REQUEST["email"] == ''){
-                echo $messageValid = "Agrege Todos Los Campos";
-                exit();
-            }
-
             $empleado->set_NumEmpleado($_REQUEST["numEmpleado"]);
             $empleado->set_IduCentro($_REQUEST["iduCentro"]);
             $empleado->set_Nombre($_REQUEST["nombre"]);
@@ -109,6 +104,40 @@
                 echo "<script> console.log('Numero de empleado no existe'); </script>";
             }
 
+        break;
+        case 5:
+
+            $empleado->set_Nombre($_REQUEST["nomEmpleado"]);
+            $empleado->set_Apellido($_REQUEST["apellEmpleado"]);
+
+            $respuesta = $empleado->Func_Filtar_Empleados();
+            $row = pg_fetch_all($respuesta);
+
+
+            // echo "<script> console.log('".$respuesta[0])."'); </script>";
+
+            // while ($row=pg_fetch_row($respuesta)){
+            //     echo $row[0]. " " . $row[1]. "<br />";
+        
+            // }
+
+            // echo "<script> console.log('".$respuesta[0]."'); </script>";
+
+
+                while ($row=pg_fetch_row($respuesta))
+                {
+
+                    echo $row[0];
+                // $customers[] = array(
+                //     'idu_centro' => $row[0],
+                //     'nombre_centro' => $row[0]
+                // );
+                // echo json_encode($customers);
+                // echo "<script> console.log('".print_r($customers)."'); </script>";
+
+                }
+            // echo json_encode($customers);
+            // echo "<script> console.log('".$customers[0]."'); </script>";
         break;
 }
 

@@ -59,42 +59,70 @@ $(document).ready(function(){
 
     // Articulos
 
-    $('#saveArticulo').on('click', function(e) {      
-        var descripcion = $('#descripcion').val();
-        var modelo = $('#modelo').val();
-        var precio = $('#precio').val();
-        var existencia = $('#existencia').val();
-        var iopcion = 1;
-        var iSwitch = 1; 
+    $('#saveArticulo').on('click', function(e) {     
+        if ($('#descripcion').val() != '' && $('#modelo').val() != '' && $('#precio').val() != '' && $('#existencia').val() != ''){     
+ 
+            var descripcion = $('#descripcion').val();
+            var modelo = $('#modelo').val();
+            var precio = $('#precio').val();
+            var existencia = $('#existencia').val();
+            var iopcion = 1;
+            var iSwitch = 1; 
 
-        $.ajax({  
-            url: "./ajax/Proc_Articulos.php",  
-            method:"POST",  
-            data:{descripcion:descripcion,modelo:modelo,precio:precio,existencia:existencia,iopcion:iopcion,iSwitch:iSwitch},  
-            success: function(success) {
-                console.log("success");
-                console.log(success);   
-                
-                
-                $("#getCode").html(success);
-                $("#myModal").modal('show');
+            $.ajax({  
+                url: "./ajax/Proc_Articulos.php",  
+                method:"POST",  
+                data:{descripcion:descripcion,modelo:modelo,precio:precio,existencia:existencia,iopcion:iopcion,iSwitch:iSwitch},  
+                success: function(success) {
+                    console.log("success");
+                    console.log(success);   
+                    
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_SUCCESS, 
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                window.location="altas.php";
+                                dialogRef.close();
+                            }
+                        }]
+                    });
 
-                // $('#cancelModal').on('click', function(e) {   
-                //     location.href = '../CapaPresentacion/altas.php';
-                // });
-            },
-            error: function(error) {
-                console.log("error");
-                console.log(error);
-            },	
-            complete: function(complete) {
-                console.log("complete");
-                console.log(complete);
 
-                // $("#getCode").html(complete);
-                // $("#myModal").modal('show');
-            }
-        });
+                    // $("#getCode").html(success);
+                    // $("#myModal").modal('show');
+
+                    // $('#cancelModal').on('click', function(e) {   
+                    //     location.href = '../CapaPresentacion/altas.php';
+                    // });
+                },
+                error: function(error) {
+                    console.log("error");
+                    console.log(error);
+                },	
+                complete: function(complete) {
+                    console.log("complete");
+                    console.log(complete);
+
+                    // $("#getCode").html(complete);
+                    // $("#myModal").modal('show');
+                }
+            });
+        }else{
+            BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_INFO, 
+                title: 'Exhibicion',
+                message: 'Agrege todos los Campos',
+                buttons: [{
+                    label: 'Close',
+                    action: function(dialogRef){
+                        dialogRef.close();
+                    }
+                }]
+            });
+        }
 
     });
 
@@ -115,13 +143,41 @@ $(document).ready(function(){
                 console.log("success");
                 console.log(success);
 
-                                
-                $("#getCode").html(success);
-                $("#myModal").modal('show');
+                if (success == "El Codigo no Existe"){
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_DANGER,  
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+                }else{
 
-                $('#cancelModal').on('click', function(e) {   
-                    location.href = '../CapaPresentacion/tableData.php';
-                });
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_SUCCESS, 
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                window.location="tableData.php";
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+                }
+
+                                
+                // $("#getCode").html(success);
+                // $("#myModal").modal('show');
+
+                // $('#cancelModal').on('click', function(e) {   
+                //     location.href = '../CapaPresentacion/tableData.php';
+                // });
             },
             error: function(error) {
                 console.log("error");
@@ -137,43 +193,87 @@ $(document).ready(function(){
 
     // Centros
 
-    $('#saveCentro').on('click', function(e) {     
-        var iduCentro = $('#numCentro').val();
-        var nomCentro = $('#nombreCen').val();
-        var iopcion = 1;
-        var iSwitch = 1;
+    $('#saveCentro').on('click', function(e) {    
+        if ($('#numCentro').val() != '' && $('#nombreCen').val() != ''){     
+
+            var iduCentro = $('#numCentro').val();
+            var nomCentro = $('#nombreCen').val();
+            var iopcion = 1;
+            var iSwitch = 1;
+
+            $.ajax({  
+                url: "./ajax/Proc_Centro.php",  
+                method:"POST", 
+                data:{iduCentro: iduCentro, nomCentro:nomCentro, iopcion:iopcion, iSwitch:iSwitch},  
+                success: function(respuesta) {
+                    console.log("success");
+                    console.log(respuesta);
+
+                    if (respuesta == "Codigo Existente"){
+                        BootstrapDialog.show({
+                            type: BootstrapDialog.TYPE_DANGER,  
+                            title: 'Exhibicion',
+                            message: respuesta,
+                            buttons: [{
+                                label: 'Close',
+                                action: function(dialogRef){
+                                    dialogRef.close();
+                                }
+                            }]
+                        });
+                    }else{
+
+                        BootstrapDialog.show({
+                            type: BootstrapDialog.TYPE_SUCCESS, 
+                            title: 'Exhibicion',
+                            message: respuesta,
+                            buttons: [{
+                                label: 'Close',
+                                action: function(dialogRef){
+                                    window.location="altas.php";
+                                    dialogRef.close();
+                                }
+                            }]
+                        });
+                    }
 
 
 
-        $.ajax({  
-            url: "./ajax/Proc_Centro.php",  
-            method:"POST", 
-            data:{iduCentro: iduCentro, nomCentro:nomCentro, iopcion:iopcion, iSwitch:iSwitch},  
-            success: function(respuesta) {
-                console.log("success");
-                console.log(respuesta);
-
-                $("#getCode").html(respuesta);
-                $("#myModal").modal('show');
 
 
-                $('#cancelModal').on('click', function(e) {   
-                    location.href = '../CapaPresentacion/altas.php';
+                    // $("#getCode").html(respuesta);
+                    // $("#myModal").modal('show');
+
+
+                    // $('#cancelModal').on('click', function(e) {   
+                    //     location.href = '../CapaPresentacion/altas.php';
+                        
+                    // });
                     
-                });
+                },
+                error: function(error) {
+                    console.log("error");
+                    console.log(error);
+                },	
+                complete: function(complete) {
+                    console.log("complete");
+                    console.log(complete);
+                }
                 
-            },
-            error: function(error) {
-                console.log("error");
-                console.log(error);
-            },	
-            complete: function(complete) {
-                console.log("complete");
-                console.log(complete);
-            }
-            
-        });
-
+            });
+        }else{
+            BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_INFO, 
+                title: 'Exhibicion',
+                message: 'Agrege todos los Campos',
+                buttons: [{
+                    label: 'Close',
+                    action: function(dialogRef){
+                        dialogRef.close();
+                    }
+                }]
+            });
+        }
     });
 
     
@@ -191,13 +291,41 @@ $(document).ready(function(){
                 console.log("success");
                 console.log(success);
 
-                                                
-                $("#getCode").html(success);
-                $("#myModal").modal('show');
+                if (success == "El Codigo no Existe"){
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_DANGER,  
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+                }else{
 
-                $('#cancelModal').on('click', function(e) {   
-                    location.href = '../CapaPresentacion/tableData.php';
-                });
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_SUCCESS, 
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                window.location="tableData.php";
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+                }
+
+                                                
+                // $("#getCode").html(success);
+                // $("#myModal").modal('show');
+
+                // $('#cancelModal').on('click', function(e) {   
+                //     location.href = '../CapaPresentacion/tableData.php';
+                // });
             },
             error: function(error) {
                 console.log("error");
@@ -208,45 +336,87 @@ $(document).ready(function(){
                 console.log(complete);
             }
         });
+        
 
     });
 
     // Empelado
 
-    $('#saveEmpleado').on('click', function(e) {        
-        var numEmpleado = $('#numEmpleado').val();
-        var iduCentro = $('#iduCentro').val();
-        var nombre = $('#nombreEmp').val();
-        var apellido = $('#apellidoEmp').val();
-        var email = $('#correoEmp').val();
-        var iopcion = 1;
-        var iSwitch = 1;
+    $('#saveEmpleado').on('click', function(e) {   
+        if ($('#numEmpleado').val() != '' && $('#iduCentro').val() != '' && $('#nombreEmp').val() != '' && $('#apellidoEmp').val() != '' && $('#correoEmp').val() != ''){     
+            var numEmpleado = $('#numEmpleado').val();
+            var iduCentro = $('#iduCentro').val();
+            var nombre = $('#nombreEmp').val();
+            var apellido = $('#apellidoEmp').val();
+            var email = $('#correoEmp').val();
+            var iopcion = 1;
+            var iSwitch = 1;
 
-        $.ajax({  
-            url: "./ajax/Proc_Empleado.php",  
-            method:"POST",  
-            data:{numEmpleado:numEmpleado, iduCentro:iduCentro, nombre:nombre, apellido:apellido, email:email, iopcion:iopcion, iSwitch:iSwitch},  
-            success: function(success) {
-                console.log("success");
-                console.log(success);
+            $.ajax({  
+                url: "./ajax/Proc_Empleado.php",  
+                method:"POST",  
+                data:{numEmpleado:numEmpleado, iduCentro:iduCentro, nombre:nombre, apellido:apellido, email:email, iopcion:iopcion, iSwitch:iSwitch},  
+                success: function(success) {
+                    console.log("success");
+                    console.log(success);
 
-                $("#getCode").html(success);
-                $("#myModal").modal('show');
+                    if (success == " Numero Empelado Existente"){
+                        BootstrapDialog.show({
+                            type: BootstrapDialog.TYPE_DANGER,  
+                            title: 'Exhibicion',
+                            message: success,
+                            buttons: [{
+                                label: 'Close',
+                                action: function(dialogRef){
+                                    dialogRef.close();
+                                }
+                            }]
+                        });
+                    }else{
+                        BootstrapDialog.show({
+                            type: BootstrapDialog.TYPE_SUCCESS, 
+                            title: 'Exhibicion',
+                            message: success,
+                            buttons: [{
+                                label: 'Close',
+                                action: function(dialogRef){
+                                    window.location="altas.php";
+                                    dialogRef.close();
+                                }
+                            }]
+                        });
+                    }
 
-                $('#cancelModal').on('click', function(e) {   
-                        location.href = '../CapaPresentacion/altas.php';
+                    // $("#getCode").html(success);
+                    // $("#myModal").modal('show');
 
-                });
-            },
-            error: function(error) {
-                console.log("error");
-                console.log(error);
-            },	
-            complete: function(complete) {
-                console.log("complete");
-                console.log(complete);
-            }
-        });
+                    // $('#cancelModal').on('click', function(e) {   
+                    //         location.href = '../CapaPresentacion/altas.php';
+
+                    // });
+                },
+                error: function(error) {
+                    console.log("error");
+                    console.log(error);
+                },	
+                complete: function(complete) {
+                    console.log("complete");
+                    console.log(complete);
+                }
+            });
+        }else{
+            BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_INFO, 
+                title: 'Exhibicion',
+                message: 'Agrege todos los Campos',
+                buttons: [{
+                    label: 'Close',
+                    action: function(dialogRef){
+                        dialogRef.close();
+                    }
+                }]
+            });
+        }
 
     });
 
@@ -267,13 +437,41 @@ $(document).ready(function(){
                 console.log("success");
                 console.log(success);
 
-                                                
-                $("#getCode").html(success);
-                $("#myModal").modal('show');
+                if (success == " Numero Empleado no Existe"){
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_DANGER,  
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+                }else{
 
-                $('#cancelModal').on('click', function(e) {   
-                    location.href = '../CapaPresentacion/tableData.php';
-                });
+                    BootstrapDialog.show({
+                        type: BootstrapDialog.TYPE_SUCCESS, 
+                        title: 'Exhibicion',
+                        message: success,
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialogRef){
+                                window.location="tableData.php";
+                                dialogRef.close();
+                            }
+                        }]
+                    });
+                }
+
+                                                
+                // $("#getCode").html(success);
+                // $("#myModal").modal('show');
+
+                // $('#cancelModal').on('click', function(e) {   
+                //     location.href = '../CapaPresentacion/tableData.php';
+                // });
             },
             error: function(error) {
                 console.log("error");

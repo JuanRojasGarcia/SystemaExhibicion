@@ -49,7 +49,7 @@ img {
 
 .desc {
 text-transform: none;
-letter-spacing: 0;
+letter-spacing: 0; 
 margin-bottom: 17px;
 color:#4E4E4E;
 font-size: .7em;

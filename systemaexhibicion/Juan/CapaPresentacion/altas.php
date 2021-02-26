@@ -1,28 +1,5 @@
 <?php include_once "./menu.html"; ?> 
 
-<?php
-include_once "../CapaDatos/conexion.php";
-$objeto = new Conexion();
-$connection = $objeto->Connect();
-$consulta = $connection->prepare("select juan.get_all_Centros();",[
-    PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
-]);
-$consulta->execute();
-$datos = $consulta->fetchAll();
-// foreach($datos as $dato){
-// echo "<script> console.log('".$dato[0]."'); </script>";
-// }
-// $objeto = new Conexion();
-// $connection = $objeto->Connect();
-// $consulta = "SELECT idu_centro FROM juan.cat_centros;"; 
-// $result =  $connection->prepare($consulta,[
-//         PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL,
-//     ]); 
-// $result->execute();
-
-?>
-
-
 <link href="../NuevosRecursos/css/altas.css" rel="stylesheet" />
 
 <div id="layoutSidenav">
@@ -124,12 +101,8 @@ $datos = $consulta->fetchAll();
                     </div>
                     <div class="form-group ">
                         <label for="iduCentro">Centros</label> <br>
-                        <select class="input-group-append" name="iduCentro" id="iduCentro">
-                            <option value="" selected="selected">Choose....</option>  
-                            <?php foreach($datos as $dato) { ?>
-                            <option value="<?php echo $dato[0];?> "> <?php echo $dato[0];?> </option>  
-                            <?php } ?>
-                        </select>
+                        <input id="centrosEmp" style="width: 40%;" />
+                        
                     </div>
                     <div class="form-group">
                         <label for="nombreEmp">Nombre</label>
@@ -149,24 +122,6 @@ $datos = $consulta->fetchAll();
                     </div>
                 </div>
             </form> <br>
-
-                <!-- <div class="container">
-                    <div class="modal" id="myModal" style="align-content: center;">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                        
-                            <div class="modal-body" id="getCode">
-                            </div>
-                            
-                            <div class="modal-footer">
-                            <button type="button" id="cancelModal" class="btn btn-success" data-dismiss="modal" >Close</button>
-                            </div>
-                            
-                        </div>
-                        </div>
-                    </div>
-                </div> -->
-
     </div>
 </div>
 <script src="js/js_altas.js"></script>

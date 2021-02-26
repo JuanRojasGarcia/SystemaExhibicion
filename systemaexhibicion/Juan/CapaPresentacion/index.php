@@ -1,51 +1,5 @@
 <?php include_once "./menu.html"; ?> 
 
-<?php 
-include_once "../CapaDatos/conexion.php";
-
-$iOpcionEmp = 1;
-$objeto = new Conexion();
-$connection = $objeto->Connect();
-
-$consultaEmp = "select juan.get_Total_Tablas($iOpcionEmp);"; 
-$resultEmp =  $connection->prepare($consultaEmp); 
-$resultEmp->execute();
-$datosEmp = $resultEmp->fetchAll();
-// echo $rowEmp['total']. " Empleados";
-// foreach($datosEmp as $dato){
-// echo "<script> console.log('".$dato[0]."'); </script>";
-// }
-
-$iOpcionArt = 2;
-$consultaArt = "select juan.get_Total_Tablas($iOpcionArt);"; 
-$resultArt =  $connection->prepare($consultaArt); 
-$resultArt->execute();
-$datosArt = $resultArt->fetchAll();
-
-// echo $rowArt['total']. " Articulos";
-// echo "<script> console.log('".$rowArt["total"]."'); </script>";
-
-
-$iOpcionVen = 3;
-$consultaVen = "select juan.get_Total_Tablas(3);"; 
-$resultVen =  $connection->prepare($consultaVen); 
-$resultVen->execute();
-$datosVen = $resultVen->fetchAll();
-
-// echo $rowVen['total']. " Ventas";
-// echo "<script> console.log('".$rowVen["total"]."'); </script>";
-
-
-$iOpcionCen = 4;
-$consultaCen = "select juan.get_Total_Tablas(4);"; 
-$resultCen =  $connection->prepare($consultaCen); 
-$resultCen->execute();
-$datosCen = $resultCen->fetchAll();
-
-// echo $rowCen['total']. " Centros";
-// echo "<script> console.log('".$rowCen["total"]."'); </script>";
-
-?>
 <link href="../NuevosRecursos/css/index.css" rel="stylesheet" />
 <div id="layoutSidenav">
     <div id="layoutSidenav_content">
@@ -60,7 +14,7 @@ $datosCen = $resultCen->fetchAll();
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Empleados</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosEmp as $dato){ echo $dato[0]; }?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" id="dataEmpleado" onload="dataEmpleados()"></p>
                             </div>
                         </div>
 
@@ -80,7 +34,7 @@ $datosCen = $resultCen->fetchAll();
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Articulos</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosArt as $dato){ echo $dato[0]; }?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" id="dataArticulo" onload="dataArticulo()"></p>
                             </div>
                         </div>
 
@@ -100,7 +54,7 @@ $datosCen = $resultCen->fetchAll();
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Ventas</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosVen as $dato){ echo $dato[0]; }?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" id="dataVenta" onload="dataVenta()"></p>
                             </div>
                         </div>
 
@@ -120,7 +74,7 @@ $datosCen = $resultCen->fetchAll();
 
                             <div class="pull-right">
                                 <p class="mb-0" style="font-size: 16px; line-height: 1.4em; opacity: 0.5;">Centros</p>
-                                <p class="mb-0" style="text-align:center; font-size: 2em;" ><?php foreach($datosCen as $dato){ echo $dato[0]; }?></p>
+                                <p class="mb-0" style="text-align:center; font-size: 2em;" id="dataCentro" onload="dataCentro()"></p>
                             </div>
                         </div>
 
@@ -135,7 +89,7 @@ $datosCen = $resultCen->fetchAll();
         </div>
     </div>
 </div>
-
+<script src="./js/js_index.js"></script>
 <!-- <div id="layoutSidenav_content">
 <main>
     <div class="container-fluid">

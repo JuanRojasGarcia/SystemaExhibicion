@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../NuevosRecursos/css/filtros.css">
     <link rel="stylesheet" href="./js/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="./js/jqwidgets/styles/jqx.classic.css" type="text/css" />
+    <link rel="stylesheet" href="./js//jqwidgets/styles/jqx.light.css" type="text/css" />
 
     <title>Filtros</title>
 </head>
@@ -65,7 +66,7 @@
                                 </div>
                             </div>
                             
-                        </div>
+                        </div> 
 
                         <div class="form-group" id="restArt" style="display:none;">
 

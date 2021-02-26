@@ -1,14 +1,6 @@
 <?php include_once ('./menu.html'); ?> <br><br>
 
-<?php
- include_once "../CapaDatos/conexion.php";
- $objeto = new Conexion();
- $connection = $objeto->Connect();
- $consultaEmp =  $connection->prepare("select * from juan.get_data_Empleados();"); 
- $consultaEmp->execute();
- $datosEmp = $consultaEmp->fetchAll();
 
-?> 
 
 <link href="../NuevosRecursos/css/ventas.css" rel="stylesheet" />
 <div id="layoutSidenav">
@@ -16,22 +8,17 @@
         <div class="container-fluid"> 
             <div class="row">
                 <div class="col-xl-12">
-                        
+                         
                     <div class="container card">
                         <div class="card-body">
                             <div>
                                 <form  autocomplete="off" id="form">
                                     <div class="form-group row">
                                         <div class="col input-group mb-6">
-                                            <select class="selectpicker" data-size="7" id="selectEmp" name="selectEmp">
-                                                <option value="" selected="selected">Choose...</option>
-                                                <?php foreach($datosEmp as $datoemp){  ?>
-                                                <option value="<?php echo $datoemp[0]; ?>"><?php echo $datoemp[2]. " " .$datoemp[3] ?>  </option>
-                                                <?php } ?>
-                                            </select>
+                                            <input id="selectEmp" style="width: 100%;" />
                                         </div>                        
                                         <div class="col">                            
-                                            <span id="emailEmp"> Email: </span>
+                                            <span id="emailEmp"> Email: </span> <span id="requestEmail"> </span>
                                         </div>
                                     </div>
                                                         
@@ -41,27 +28,10 @@
 
                                     <div class="form-group row">
                                         <div class="col input-group mb-3">
-                                            <select class="selectpicker" data-size="7" id="selectArt" >
-                                                
-                                                <?php
-                                                include_once "../CapaDatos/conexion.php";
-                                                $objeto = new Conexion();
-                                                $connection = $objeto->Connect();
-                                                $consultaArt =  $connection->prepare("select * from juan.get_data_Articulos();"); 
-                                                $consultaArt->execute();
-                                                $datosArt = $consultaArt->fetchAll();
-
-                                                ?>
-
-                                                <option value="" selected>Choose...</option>
-                                                <?php foreach($datosArt as $datoArt){   $existencia = $datoArt[4]; ?>
-                                                
-                                                <option value="<?php echo $datoArt[0]; ?>"><?php echo $datoArt[1];?>   </option>
-                                                <?php } ?>
-                                            </select>
+                                            <input id="selectArt" style="width: 100%;" />
                                         </div>
                                         <div class="col">
-                                            <button type="button" class="btn btn-success" id="btnAddArt">+</button>
+                                            <button type="button" class="btn btn-success" id="btnAddArt" >+</button>
                                         </div>
                                     </div>
                                     <div class="table-responsive" style="float:none; margin:auto;">
@@ -81,7 +51,7 @@
                                                 <tr>
                                                     <td><p id="descripcion"  name="descripcion"></p> </td>
                                                     <td><p id="modelos"  name="modelos"></p> </td>
-                                                    <td><input id="cantidadArt" name="cantidadArt" class="qty" value="0" type="number" min="0"></td>
+                                                    <td><input id="cantidadArt" name="cantidadArt" class="qty" value="0" type="number" min="0" onkeypress="return soloNumeros(event)"></td>
                                                     <td><input id="idPrecio" name="idPrecio" value="0" type="text"></td>
 
                                                     <!-- <td id="idPrecio" name="idPrecio"> </td> -->
@@ -90,6 +60,8 @@
                                             </tbody>
                                         </table> 
                                     </div>
+
+                                    
                                     <div class="container text-black">
                                         <div class="row">
                                             <div class="col-lg-8"></div>
@@ -105,13 +77,14 @@
                                                     <div class="col-lg-5">
                                                         <p class="text-right pr-4" id="enganche">0</p>
                                                         <p class="text-right pr-4" id="egbonus">0</p>
-                                                        <input type="numeric" class="text-right" id="total" name="total" value="0" style=" background-color: #ffff;border: 0; width:110px;">
-                                                        <!--<p class="text-right pr-4" id="total" name="total">0</p>-->
+                                                        <input type="numeric" class="text-right" id="total" name="total" value="0" style=" background-color: #ffff;border: 0; width:105px;">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                   
 
                                     <div id="divNext" class="table-responsive d-none">
                                         <table class="table text-black">
@@ -160,6 +133,7 @@
     </div>
 </div>
 <script src="js/js_ventas.js"></script>
+<script src="js/js_funcGenerales.js"></script>
 
      
     

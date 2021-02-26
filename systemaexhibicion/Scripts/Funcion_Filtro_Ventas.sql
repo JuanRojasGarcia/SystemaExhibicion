@@ -44,7 +44,7 @@ $body$ language plpgsql;
 
 DROP FUNCTION juan.Funcion_Filtro_Ventas(character varying,character varying,date,date)
 
-select * from juan.Funcion_Filtro_Ventas('','','2021-01-1','2021-12-23');
+select * from juan.Funcion_Filtro_Ventas('','','2021-01-1','2021-03-28');
 
  SELECT em.nombre_empleado FROM juan.cat_ventas as v 
  join juan.cat_empleados as em on(v.num_empleado = em.num_empleado)

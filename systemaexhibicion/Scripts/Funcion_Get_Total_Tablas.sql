@@ -22,8 +22,8 @@ begin
 end;
 $$ language plpgsql;
 
---drop function juan.get_Total_Tablas();
+drop function juan.get_Total_Tablas(integer);
 
---select * from juan.get_Total_Tablas(1);
+select * from juan.get_Total_Tablas(2);
 
---select * from juan.cat_articulos;
+select * from juan.cat_articulos;

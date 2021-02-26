@@ -37,7 +37,7 @@ $body$ language plpgsql;
  DROP FUNCTION juan.funcion_centro(integer,character varying,integer)
 
 select * from juan.Funcion_Centro(9,'Lonja',1);
-select juan.Funcion_Centro(00000,'Prueba',2);
+select juan.Funcion_Centro(25050,'Prueba 2',2);
 select juan.Funcion_Centro(9,'',3);
 
 

@@ -16,6 +16,14 @@ begin
 		else
 			return 2;
 		end if;
+	elseif p_iOpcion = 2 then
+		if exists (select idu_venta from juan.cat_ventas WHERE idu_venta = p_idventa) then
+			UPDATE juan.cat_ventas SET num_empleado=p_numEmpleado, fecha=p_fecha 
+			WHERE idu_venta = p_idventa;
+			return 1;
+		else 
+			return 2;
+		end if;
 	elseif p_iOpcion = 3 then 
 		if exists  (select idu_venta from juan.cat_ventas WHERE idu_venta = p_idventa)  then
 			DELETE FROM juan.cat_ventas WHERE idu_venta = p_idventa;
@@ -35,7 +43,10 @@ INSERT INTO juan.cat_ventas(num_empleado, total, fecha)
 			VALUES (90091441,10.96,'1/02/2021');
 			
 select juan.Funcion_Ventas(0,0091441,10.96,'2/19/2021',1);
+select juan.Funcion_Ventas(14,90091448,0,'1/01/2021',2);
+
 
 select * from juan.cat_ventas;
-select idu_venta from juan.cat_ventas WHERE idu_venta = 31
+select * from juan.cat_empleados;
+select * from juan.cat_ventas WHERE idu_venta = 6
 --select * from juan.get_data_Ventas();

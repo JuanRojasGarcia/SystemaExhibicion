@@ -20,8 +20,8 @@
 
 	CREATE TABLE juan.cat_ventas 
 	(
-	idu_venta int GENERATED ALWAYS AS IDENTITY,
-	num_empleado int not null default 0,
+	idu_venta serial not null,
+	num_empleado integer not null default 0,
 	total decimal(10,2) not null default 0,
 	fecha date not null default '1900-01-1'
 	)

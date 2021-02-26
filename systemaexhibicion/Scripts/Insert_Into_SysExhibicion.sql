@@ -23,12 +23,29 @@ SELECT 25049,'Programacion II' union all
 SELECT 25050,'CEDIS'
 	
 insert into juan.cat_ventas(num_empleado,total,fecha)  
-SELECT 90091441,2994.99,'1/02/2021' union all
-SELECT 90091442,39456.99,'1/02/2021' union all
-SELECT 90091443,5478.99,'1/02/2021' union all
-SELECT 90091444,15297.99,'1/02/2021' union all
-SELECT 90091445,15478.99,'1/02/2021' union all
-SELECT 90091446,96157.99,'1/02/2021'
+SELECT 90091441,2994.99,'1/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091442,39456.99,'2/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091443,5478.99,'3/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091444,15297.99,'4/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091445,15478.99,'5/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091446,96157.99,'6/01/2021'
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091447,2994.99,'7/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091448,39456.99,'8/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091441,5478.99,'1/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091442,15297.99,'2/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091443,15478.99,'3/01/2021' 
+insert into juan.cat_ventas(num_empleado,total,fecha)  
+SELECT 90091444,96157.99,'4/01/2021'
 	
 insert into juan.cat_empleados(num_empleado,idu_centro,nombre_empleado,apellido_empleado,email_empleado)
 SELECT 90091441,25045,'Juan Carlos ','Rojas Garcia','r_ojasjc@hotmail.com' union all

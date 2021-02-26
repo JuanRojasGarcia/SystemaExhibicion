@@ -82,13 +82,13 @@
 
         public function Func_Actualizar_Venta()
         {
-            $consulta = "select juan.Funcion_Ventas(".filter_var($this->FILTER_SANITIZE_ENTERO($this->numEmpleado), FILTER_SANITIZE_NUMBER_INT)." , ".filter_var($this->total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)." , '".$this->fecha."' ,".filter_var($this->FILTER_SANITIZE_ENTERO($this->iopcion),FILTER_SANITIZE_NUMBER_INT )." );";
+            $consulta = "select juan.Funcion_Ventas(".filter_var($this->FILTER_SANITIZE_ENTERO($this->iduVenta),FILTER_SANITIZE_NUMBER_INT )." ,".filter_var($this->FILTER_SANITIZE_ENTERO($this->numEmpleado), FILTER_SANITIZE_NUMBER_INT)." , ".filter_var($this->total, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION)." , '".$this->fecha."' ,".filter_var($this->FILTER_SANITIZE_ENTERO($this->iopcion),FILTER_SANITIZE_NUMBER_INT )." );";
             return $this->db($consulta);
         }
 
         public function Func_Eliminar_Venta()
         {
-            $consulta = "select juan.Funcion_Ventas(".$this->iduVenta.");";
+            $consulta = "select juan.Funcion_Ventas(".$this->iduVenta.", 0,0,'01/01/1900', ".$this->iopcion." );";
             return $this->db($consulta);
         }
 
@@ -110,6 +110,12 @@
         public function Func_Filtar_Venta()
         {
             $consulta = "select * from juan.Funcion_Filtro_Ventas('".$this->nomEmpleado."' ,'".$this->apellEmpleado."' ,'".$this->fechaIni."', '".$this->fechaFin."');";
+            return $this->db($consulta);
+        }
+
+        public function Func_Count_Ventas()
+        {
+            $consulta = "select juan.get_Total_Tablas(".$this->iopcion.");";
             return $this->db($consulta);
         }
     }

@@ -63,7 +63,7 @@
         function FILTER_SANITIZE_ENTERO($string)
         {
             return preg_replace('/[^0-9,$*$]/', '', $string); 
-
+ 
         }
 
         public function Func_Agregar_Articulo()
@@ -103,8 +103,20 @@
             return $this->db($consulta);
         }
 
+        public function Func_Get_AllArticulos()
+        {
+            $consulta = "select * from juan.get_data_Articulos();";
+            return $this->db($consulta);
+        }
+
+        public function Func_Count_Articulos()
+        {
+            $consulta = "select juan.get_Total_Tablas(".$this->iopcion.");";
+            return $this->db($consulta);
+        }
 
 
 
     } 
 ?>
+ 

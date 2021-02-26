@@ -62,7 +62,7 @@
 
         }
 
-        
+         
         //Funciones de consultas
         public function Func_Agregar_Empleado()
         {
@@ -94,7 +94,24 @@
             return $this->db($consulta);
         }
 
+        public function Func_Eliminar_Empleado()
+        {
+            $consulta = "select * from juan.Funcion_Empleado(".$this->numEmpleado.", 0,'','','', ".$this->iopcion." );";
+            return $this->db($consulta);
+        }
+
+        public function Func_Get_AllEmpleados()
+        {
+            $consulta = "select * from juan.get_data_Empleados();";
+            return $this->db($consulta);
+        }
+
+        public function Func_Count_Empleados()
+        {
+            $consulta = "select juan.get_Total_Tablas(".$this->iopcion.");";
+            return $this->db($consulta);
+        }
 
     }
 
-?> 
+?>  

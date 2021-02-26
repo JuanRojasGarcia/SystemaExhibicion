@@ -1,6 +1,8 @@
 $(document).ready(function(){              
 
         var bRegresa = false;
+        var selectVacioEmp = -1;
+        var selectVacioArt = -1;
         // $('#btnSave').hide(); 
         // $('#btnNext').show();
 
@@ -28,39 +30,103 @@ $(document).ready(function(){
 
         // });}
 
+        selectEmp = $("#selectEmp").kendoDropDownList({
+            autoBind: false,
+            cascadeFrom: "Centros",
+            optionLabel: {  nombre_empleado: "Selecione un Empleado...",
+                            num_empleado: -1
+                            },
+            dataTextField: "nombre_empleado",
+            dataValueField: "num_empleado",
+            dataSource: {
+                type: "json",
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        type: "GET",
+                            url: function(){
+                                return "./ajax/Proc_Empleado.php?iSwitch=7"
+                            },
+                        dataType: "json",
+                        cache: false
+                    }
+                }
+            }
+        }).data("kendoDropDownList");
+    
+        selectArt = $("#selectArt").kendoDropDownList({
+            autoBind: false,
+            cascadeFrom: "Centros",
+            optionLabel: {  descripcion: "Selecione un Articulo...",
+                            idu_articulo: -1
+                            },
+            dataTextField: "descripcion",
+            dataValueField: "idu_articulo",
+            dataSource: {
+                type: "json",
+                serverFiltering: true,
+                transport: {
+                    read: {
+                        type: "GET",
+                            url: function(){
+                                return "./ajax/Proc_Articulos.php?iSwitch=7"
+                            },
+                        dataType: "json",
+                        cache: false
+                    }
+                }
+            }
+        }).data("kendoDropDownList");
 
+        var selectArtEnable = $("#selectArt").data("kendoDropDownList");
+        var selectEmpEnable = $("#selectEmp").data("kendoDropDownList");
 
         $('#selectEmp').change(function(){  
             //const selectEmp = $('#selectEmp');
-            var id = $(this).val(); 
-            var iSwitch = 3; 
-            $.ajax({  
-                url:"./ajax/Proc_Venta.php",  
-                method:"POST",  
-                data:{id:id, iSwitch:iSwitch},  
-                success:function(data){  
-                    $('#emailEmp').html(data);  
-                    //selectEmp.prop('disabled', true)
-                }  
-            }); 
+            selectVacioEmp = selectEmp.value();
+
+            if ($(this).val() == ""){
+                $('#requestEmail').html('');  
+            }else{
+                id = $(this).val();
+                var iSwitch = 3; 
+                $.ajax({  
+                    url:"./ajax/Proc_Venta.php",  
+                    method:"POST",  
+                    data:{id:id, iSwitch:iSwitch},  
+                    success:function(data){  
+                        $('#requestEmail').html(data);  
+                        //selectEmp.prop('disabled', true)
+                    }  
+                }); 
+            }
+            
 
 
-        });
+        });  
 
-        $('#selectArt').change(function(){  
-            if($('#selectArt option:selected').val() == ''){
+        $('#selectArt').change(function()
+        {
+            selectVacioArt = selectArt.value();
+            if(selectVacioArt == -1)
+            {
                 $('#descripcion').html('');
                 $('#modelos').html('');
                 $('#cantidadArt').val(0);
                 $('#idPrecio').val(0);
-                $('#tableBodyForm').addClass('d-none')
+                $('#enganche').html('0');
+                $('#egbonus').html('0');
+                $('#total').val(0);
+                $('#tableBodyForm').addClass('d-none');
+
+            
+            }else{
+                selectArtEnable.enable(false);
+
             }
         });
 
-       
-
-
-            //console.log($('#cantidadArt').val());
+        //console.log($('#cantidadArt').val());
 
         //Funcon para agregar articulo al tableBodyForm
 
@@ -89,7 +155,14 @@ $(document).ready(function(){
             }else{
                 
   
-                $('#tableBodyForm').removeClass('d-none')
+                $('#tableBodyForm').removeClass('d-none');
+                $('#cantidadArt').val(0);
+                selectArtEnable.enable(true);
+
+                // $('#selectArt').prop('disabled', false);
+                // $('#selectArt').selectpicker('refresh');
+
+
 
 
                 bRegresa = true;
@@ -168,36 +241,35 @@ $(document).ready(function(){
 
         
 
-        $("#cantidadArt").on('click', function(e) {
-
-
-
-            var precioInt = $('#idPrecio').val();
-            var cantidad = $('#cantidadArt').val();
-            var iSwitch = 6;  
-
-            // var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
-
-            $.ajax({  
-                // url:"./log_get_importeArt.php",  
-                url:"./ajax/Proc_Venta.php",  
-                method:"POST",  
-                data:{cantidad:cantidad, precioInt:precioInt,iSwitch:iSwitch},  
-                success:function(value){    
-                    var data = value.split(",");  
-                    console.log(data);  
-                    $('#importeArt').html(data[1]);
-                    $('#enganche').html(data[3]);
-                    $('#egbonus').html(data[3]);
-                    $('#total').val(data[4]);
-                }  
-            }); 
-
-                
-
+        $("#cantidadArt").bind('click keyup',function(e) {
+            if ($('#cantidadArt').val() >= 0 ){
+                var precioInt = $('#idPrecio').val();
+                var cantidad = $('#cantidadArt').val();
+                var iSwitch = 6;  
     
-                
+                // var id = <?php if(isset($id)){echo $id; }else { echo '0';} ?> ;
+    
+                $.ajax({  
+                    // url:"./log_get_importeArt.php",  
+                    url:"./ajax/Proc_Venta.php",  
+                    method:"POST",  
+                    data:{cantidad:cantidad, precioInt:precioInt,iSwitch:iSwitch},  
+                    success:function(value){    
+                        var data = value.split(",");  
+                        console.log(data);  
+                        $('#importeArt').html(data[1]);
+                        $('#enganche').html(data[2]);
+                        $('#egbonus').html(data[3]);
+                        $('#total').val(data[4]);
+                    }  
+                }); 
+            }
         });
+
+
+
+
+            
 
 
 
@@ -214,10 +286,11 @@ $(document).ready(function(){
 
         //Funcion para desplegar los abonos mensuales y validar el boton "Siguiente"
         $('#btnNext').on('click', function(e) {
-
+            // console.log(selectVacioEmp);
+            // console.log(selectVacioArt);
             const message = $('#message');
 
-            if($('#selectEmp option:selected').val() == ''){
+            if(selectVacioEmp == -1){
                 // message.html('Necesitas seleccionar un Empleado').show();
                 // message.addClass('alert-danger');
                 // setTimeout( function ( ) { 
@@ -231,11 +304,11 @@ $(document).ready(function(){
                     buttons: [{
                         label: 'Close',
                         action: function(dialogRef){
-                            dialogRef.close();
+                            dialogRef.close(); 
                         }
                     }]
                 });
-            }else if ($('#selectArt option:selected').val() == ''){
+            }else if (selectVacioArt == -1){
                 // const message = $('#message');
                 // message.html('Necesitas seleccionar un Articulo').show();
                 // message.addClass('alert-danger');
@@ -255,6 +328,8 @@ $(document).ready(function(){
                     }]
                 });
             }else if (bRegresa == false){
+
+                bRegresaNext = false;
                 BootstrapDialog.show({
                     type: BootstrapDialog.TYPE_INFO,  
                     title: 'Exhibicion',
@@ -267,7 +342,7 @@ $(document).ready(function(){
                     }]
                 });
 
-            }else if ($('#cantidadArt').val() == 0){
+            }else if ($('#cantidadArt').val() <= 0){
                 // const message = $('#message');
                 // message.html('La cantidad debe ser mayor a 0').show();
                 // message.addClass('alert-danger');
@@ -288,6 +363,7 @@ $(document).ready(function(){
                     }]
                 });
             }else{
+
                 // if ($('#cantidadArt').val() > <?php //echo $existencia; ?>){
                 //     message.html('Compras mas de lo Existe').show();
                 //     message.addClass('alert-danger');
@@ -299,13 +375,25 @@ $(document).ready(function(){
 
                 
 
-                const selectArt = $('#selectArt');
-                const selectEmp = $('#selectEmp');
-                const btnAddArt = $('#btnAddArt');
-                selectArt.prop('disabled', true);
-                btnAddArt.prop('disabled', true);
-                selectEmp.prop('disabled', true);
+                // const selectArt = $('#selectArt');
+                // const selectEmp = $('#selectEmp');
+                // const btnAddArt = $('#btnAddArt');
+                // selectArt.prop('disabled', true);
+                // btnAddArt.prop('disabled', true); 
+                // selectEmp.prop('disabled', true);
 
+                // $('#selectEmp').prop('disabled', true);
+                // $('#selectArt').prop('disabled', true);
+                $('#cantidadArt').prop('disabled', true);
+                $('#btnAddArt').prop('disabled', true);
+
+                
+
+
+                // $('.selectpicker').selectpicker('refresh');
+
+                selectArtEnable.enable(false);
+                selectEmpEnable.enable(false);
                 
                 $('#divNext').removeClass('d-none')
                 $('#btnSave').removeClass('d-none')
@@ -428,4 +516,8 @@ $(document).ready(function(){
             
     
         });
+
+    
+
+
 });  

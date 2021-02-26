@@ -5,6 +5,8 @@
  * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
  */
 
+
+
 (function (root, factory) {
   if (root === undefined && window !== undefined) root = window;
   if (typeof define === 'function' && define.amd) {
@@ -3175,6 +3177,7 @@
   });
 })(jQuery);
 
-
 }));
+
+
 //# sourceMappingURL=bootstrap-select.js.map

@@ -1,4 +1,6 @@
 $(document).ready(function(){      
+    var centrosEmp = '';
+
 
     $('#btnCentros').on('click', function(e) {
         $('#formCentros').show();
@@ -13,7 +15,7 @@ $(document).ready(function(){
 
         // values Empleados
         $('#numEmpleado').val('');
-        $('#iduCentro').val('');
+        $('#centrosEmp').val();
         $('#nombreEmp').val('');
         $('#apellidoEmp').val('');
         $('#correoEmp').val('');
@@ -48,7 +50,7 @@ $(document).ready(function(){
 
         // values Empleados
         $('#numEmpleado').val('');
-        $('#iduCentro').val('');
+        $('#centrosEmp').val('');
         $('#nombreEmp').val('');
         $('#apellidoEmp').val('');
         $('#correoEmp').val('');
@@ -343,14 +345,15 @@ $(document).ready(function(){
     // Empelado
 
     $('#saveEmpleado').on('click', function(e) {   
-        if ($('#numEmpleado').val() != '' && $('#iduCentro').val() != '' && $('#nombreEmp').val() != '' && $('#apellidoEmp').val() != '' && $('#correoEmp').val() != ''){     
+        if ($('#numEmpleado').val() != '' && $('#centrosEmp').val() != '' && $('#nombreEmp').val() != '' && $('#apellidoEmp').val() != '' && $('#correoEmp').val() != ''){     
             var numEmpleado = $('#numEmpleado').val();
-            var iduCentro = $('#iduCentro').val();
+            var iduCentro = $('#centrosEmp').val();
             var nombre = $('#nombreEmp').val();
             var apellido = $('#apellidoEmp').val();
             var email = $('#correoEmp').val();
             var iopcion = 1;
             var iSwitch = 1;
+
 
             $.ajax({  
                 url: "./ajax/Proc_Empleado.php",  
@@ -422,7 +425,7 @@ $(document).ready(function(){
 
     $('#editarEmpleado').on('click', function(e) {        
         var numEmpleado = $('#numEmpleado').val();
-        var iduCentro = $('#iduCentro').val();
+        var iduCentro = $('#centrosEmp').val();
         var nombre = $('#nombreEmp').val();
         var apellido = $('#apellidoEmp').val();
         var email = $('#correoEmp').val();
@@ -484,6 +487,32 @@ $(document).ready(function(){
         });
 
     });
+
+    var getAllCentrosiSwitch = "iSwitch=7";
+    centrosEmp = $("#centrosEmp").kendoDropDownList({
+        autoBind: false,
+        cascadeFrom: "Centros",
+        optionLabel: {  nombre_centro: "Selecione un Centro...",
+                        idu_centro: -1
+                     },
+        dataTextField: "nombre_centro",
+        dataValueField: "idu_centro",
+        dataSource: {
+            type: "json",
+            serverFiltering: true,
+            transport: {
+                read: {
+                    type: "GET",
+                        url: function(){
+                            return "./ajax/Proc_Centro.php?"+getAllCentrosiSwitch
+                        },
+                    dataType: "json",
+                    cache: false
+                }
+            }
+        }
+    }).data("kendoDropDownList");
+
 
 
 });

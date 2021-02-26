@@ -19,14 +19,14 @@
                     echo $mensajeSuccess;
                 }elseif($respuesta[0] == 2){
                     echo $mensajeError;
-                }
+                } 
             
  
         break;
         case 2:
 
-            $centro->set_iduCentro($_REQUEST["iduCentro"]);
-            $centro->set_nombreCentro($_REQUEST["nomCentro"]);
+            $centro->set_iduCentro($_REQUEST["numCentroVal"]);
+            $centro->set_nombreCentro($_REQUEST["nomCentroVal"]);
             $centro->set_Opcion($_REQUEST["iopcion"]);
 
             $respuesta = $centro->Func_Editar_Centro();
@@ -116,7 +116,7 @@
 
 
                 while ($row=pg_fetch_row($respuesta))
-                {
+                { 
 
                     echo $row[0];
                 // $customers[] = array(
@@ -129,6 +129,46 @@
                 }
             // echo json_encode($customers);
             // echo "<script> console.log('".$customers[0]."'); </script>";
+        break;
+        case 6:
+
+            $centro->set_iduCentro($_REQUEST["iduCentro"]);
+            $centro->set_Opcion($_REQUEST["iopcion"]);
+
+            $respuesta = $centro->Func_Eliminar_Centro();
+            $respuesta = pg_fetch_array($respuesta);
+            $mensajeSuccess = "Se Elimino Correctamente";
+            $mensajeError = "Ocurrio un Error. Numero centro no Existe";
+        
+            if ($respuesta[0] == 1){
+                echo $mensajeSuccess;
+            }elseif($respuesta[0] == 2){
+                echo $mensajeError;
+            }
+    
+        break;
+
+        case 7:
+            $respuesta = $centro->Func_Get_AllCentros();
+            $row = pg_fetch_all($respuesta);
+
+            $rows = [];
+
+            while ($row = pg_fetch_row($respuesta)){
+                $rows[] = array(
+                    'idu_centro' => $row[0],
+                    'nombre_centro' => $row[1]
+                );
+            }
+            echo json_encode($rows);
+        break;
+        case 8:
+            $centro->set_Opcion($_REQUEST["iopcion"]);
+            $respuesta = $centro->Func_Count_Centros();
+            $row = pg_fetch_row($respuesta);
+
+            echo $row[0];
+            
         break;
         
     }

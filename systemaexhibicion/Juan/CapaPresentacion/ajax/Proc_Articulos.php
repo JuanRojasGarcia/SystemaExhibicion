@@ -34,11 +34,11 @@
         break; 
         // Modificar Articulo
         case 2:
-            $articulo->set_Idu($_REQUEST["iduArticulo"]);
-            $articulo->set_Descripcion($_REQUEST["descripcion"]);
-            $articulo->set_Modelo($_REQUEST["modelo"]);
-            $articulo->set_Precio($_REQUEST["precio"]);
-            $articulo->set_Existencia($_REQUEST["existencia"]);
+            $articulo->set_Idu($_REQUEST["skuVal"]);
+            $articulo->set_Descripcion($_REQUEST["descripcionVal"]);
+            $articulo->set_Modelo($_REQUEST["modeloVal"]);
+            $articulo->set_Precio($_REQUEST["precioVal"]);
+            $articulo->set_Existencia($_REQUEST["existenciaVal"]);
             $articulo->set_Opcion($_REQUEST["iopcion"]);
         
             $respuesta = $articulo->Func_Actualizar_Articulo();
@@ -138,7 +138,7 @@
             $articulo->set_Idu($_REQUEST["skuArt"]);
             $articulo->set_Descripcion($_REQUEST["descArt"]);
             $articulo->set_Modelo($_REQUEST["modelArt"]);
-
+ 
 
             $respuesta = $articulo->Func_Filtar_Articulo();
             $row = pg_fetch_all($respuesta);
@@ -162,12 +162,48 @@
                 //     'idu_centro' => $row[0],
                 //     'nombre_centro' => $row[0]
                 // );
-                // echo json_encode($customers);
-                // echo "<script> console.log('".print_r($customers)."'); </script>";
-
                 }
             // echo json_encode($customers);
             // echo "<script> console.log('".$customers[0]."'); </script>";
+        break;
+        case 6:
+
+            $articulo->set_Idu($_REQUEST["skuArticulo"]);
+            $articulo->set_Opcion($_REQUEST["iopcion"]);
+
+            $respuesta = $articulo->Func_Eliminar_Articulo();
+            $respuesta = pg_fetch_array($respuesta);
+            $mensajeSuccess = "Se Elimino Correctamente";
+            $mensajeError = "Ocurrio un Error. Sku No existe";
+        
+            if ($respuesta[0] == 1){
+                echo $mensajeSuccess;
+            }elseif($respuesta[0] == 2){
+                echo $mensajeError;
+            }
+    
+        break;
+        case 7:
+            $respuesta = $articulo->Func_Get_AllArticulos();
+            $row = pg_fetch_all($respuesta);
+
+            $rows = [];
+
+            while ($row = pg_fetch_row($respuesta)){
+                $rows[] = array(
+                    'idu_articulo' => $row[0],
+                    'descripcion' => $row[1]
+                );
+            }
+            echo json_encode($rows);
+        break;
+        case 8:
+            $articulo->set_Opcion($_REQUEST["iopcion"]);
+            $respuesta = $articulo->Func_Count_Articulos();
+            $row = pg_fetch_row($respuesta);
+
+            echo $row[0];
+            
         break;
     }
 ?>

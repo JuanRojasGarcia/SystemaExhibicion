@@ -25,24 +25,27 @@
             }
         break;
         case 2:
-            $venta->set_Idu($_REQUEST["iduArticulo"]);
-            $venta->set_NumEmpleado($_REQUEST["descripcion"]);
-            $venta->set_Total($_REQUEST["modelo"]) ;
-            $venta->set_Fecha($_REQUEST["precio"]) ;
+            $venta->set_Idu($_REQUEST["folioVal"]);
+            $venta->set_NumEmpleado($_REQUEST["numEmpleadoVal"]);
+            $venta->set_NomEmpleado($_REQUEST["nomEmpleadoVal"]) ;
+            $venta->set_ApellEmpleado($_REQUEST["apellEmpleadoVal"]) ;
+            $venta->set_Total($_REQUEST["totalVal"]) ;
+            $venta->set_Fecha($_REQUEST["fechaVal"]) ;
             $venta->set_Opcion($_REQUEST["iopcion"]);
         
             $respuesta = $venta->Func_Actualizar_Venta();
             $respuesta = pg_fetch_array($respuesta);
-            $mensaje = "Se Modifico Correctamente";
+            $mensajeSuccess = "Se Modifico Correctamente";
+            $mensajeError = "Folio Venta no Existe";
         
             // echo "<script> console.log('".print_r($respuesta)."'); </script>";
 
-            if ($respuesta[0] = 1){
-                echo $mensaje;
-            }else{
-                echo "Error.";
+            if ($respuesta[0] == 1){
+                echo $mensajeSuccess;
+            }elseif($respuesta[0] == 2){
+                echo $mensajeError;
             }
-        break;
+        break; 
         case 3:
             $output = '';
             $venta->set_Idu($_REQUEST["id"]);
@@ -51,7 +54,7 @@
             $respuesta = pg_fetch_array($respuesta);
             // echo "<script> console.log(' .$respuesta[0]. '); </script>";
 
-            echo $output .= '<span> Email: </span>' . $respuesta[0];
+            echo $output .= $respuesta[0];
         break; 
         case 4: 
             // $output = '';
@@ -172,6 +175,32 @@
             }
 
             echo $output;
+        break;
+        case 8:
+
+            $venta->set_Idu($_REQUEST["folio"]);
+            $venta->set_Opcion($_REQUEST["iopcion"]);
+
+            $respuesta = $venta->Func_Eliminar_Venta();
+            $respuesta = pg_fetch_array($respuesta);
+
+            // $mensajeSuccess = "Se Elimino Correctamente";
+            // $mensajeError = "Ocurrio un Error. Folio Venta no Existe";
+        
+            if ($respuesta[0] == 1){
+                echo "Se Elimino Correctamente";
+            }elseif($respuesta[0] == 2){
+                echo "Ocurrio un Error. Folio Venta no Existe";
+            }
+    
+        break;
+        case 9:
+            $venta->set_Opcion($_REQUEST["iopcion"]);
+            $respuesta = $venta->Func_Count_Ventas();
+            $row = pg_fetch_row($respuesta);
+
+            echo $row[0];
+            
         break;
     }
 

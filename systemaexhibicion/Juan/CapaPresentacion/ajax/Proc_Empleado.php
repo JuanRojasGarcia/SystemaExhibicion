@@ -3,7 +3,7 @@
     $empleado = new Empleado();
 
 
-    switch ($_REQUEST["iSwitch"]){
+    switch ($_REQUEST["iSwitch"]){ 
         case 1:
             $empleado->set_NumEmpleado($_REQUEST["numEmpleado"]);
             $empleado->set_IduCentro($_REQUEST["iduCentro"]);
@@ -27,11 +27,11 @@
 
         break;
         case 2:
-            $empleado->set_NumEmpleado($_REQUEST["numEmpleado"]);
-            $empleado->set_IduCentro($_REQUEST["iduCentro"]);
-            $empleado->set_Nombre($_REQUEST["nombre"]);
-            $empleado->set_Apellido($_REQUEST["apellido"]);
-            $empleado->set_Email($_REQUEST["email"]);
+            $empleado->set_NumEmpleado($_REQUEST["numEmpleadoVal"]);
+            $empleado->set_IduCentro($_REQUEST["iduCentroVal"]);
+            $empleado->set_Nombre($_REQUEST["nombreVal"]);
+            $empleado->set_Apellido($_REQUEST["apellidoVal"]);
+            $empleado->set_Email($_REQUEST["emailVal"]);
             $empleado->set_Opcion($_REQUEST["iopcion"]);
         
             $respuesta = $empleado->Func_Actualizar_Empleado();
@@ -125,7 +125,7 @@
 
 
                 while ($row=pg_fetch_row($respuesta))
-                {
+                { 
 
                     echo $row[0];
                 // $customers[] = array(
@@ -138,6 +138,46 @@
                 }
             // echo json_encode($customers);
             // echo "<script> console.log('".$customers[0]."'); </script>";
+        break;
+        case 6:
+
+            $empleado->set_NumEmpleado($_REQUEST["numEmpleado"]);
+            $empleado->set_Opcion($_REQUEST["iopcion"]);
+
+            $respuesta = $empleado->Func_Eliminar_Empleado();
+            $respuesta = pg_fetch_array($respuesta);
+            $mensajeSuccess = "Se Elimino Correctamente";
+            $mensajeError = "Ocurrio un Error. Numero Empleado no Existe";
+        
+            if ($respuesta[0] == 1){
+                echo $mensajeSuccess;
+            }elseif($respuesta[0] == 2){
+                echo $mensajeError;
+            }
+
+        break;
+        case 7:
+            $respuesta = $empleado->Func_Get_AllEmpleados();
+            $row = pg_fetch_all($respuesta);
+
+            $rows = [];
+
+            while ($row = pg_fetch_row($respuesta)){
+                $rows[] = array(
+                    'num_empleado' => $row[0],
+                    'nombre_empleado' => $row[2],
+                    'apellido_empleado' => $row[3]
+                );
+            }
+            echo json_encode($rows);
+        break;
+        case 8:
+            $empleado->set_Opcion($_REQUEST["iopcion"]);
+            $respuesta = $empleado->Func_Count_Empleados();
+            $row = pg_fetch_row($respuesta);
+
+            echo $row[0];
+            
         break;
 }
 
